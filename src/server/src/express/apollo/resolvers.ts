@@ -4,7 +4,7 @@ import { CallbackError } from 'mongoose';
 import xpath from 'xpath';
 import { DOMParser } from 'xmldom';
 // @ts-ignore
-import { GraphQLUpload } from 'graphql-upload';
+// import { GraphQLUpload } from 'graphql-upload';
 import { IUser, User } from '../data/user';
 import { Department, IDepartment } from '../data/department';
 import { ILevel, Level } from '../data/level';
@@ -666,7 +666,7 @@ const resolvers = {
     },
 
     // Void: Void,
-    Upload: GraphQLUpload,
+    // Upload: GraphQLUpload,
 };
 
 export {

@@ -39,7 +39,7 @@ type IPlace = {
 
 class Filler {
     private countOfLevels = 2;
-    private readonly confluenceBaseUrl: string;
+    // private readonly confluenceBaseUrl: string;
     private chiefList: string[] =  [];
 
     private xmlData = fs.readFileSync(

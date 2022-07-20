@@ -37,6 +37,8 @@ const Main: React.FC<MainProps>  = ({ floors, address }) => {
   const { pathname, search } = useLocation();
   const { canEdit } = parseQuery(search);
 
+  console.log('address', address);
+
   // @ts-ignore
   const auth = React.useContext<Auth | null>(AuthContext);
   // @ts-ignore

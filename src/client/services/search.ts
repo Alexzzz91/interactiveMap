@@ -101,8 +101,8 @@ class Search {
       const user = this.getMostSimilarKey(searchWordOptions);
 
       if (user.similarity >= this.PERCENTAGE_OF_SIMILARITY) {
+        // @ts-ignore
         acc.push({
-          // @ts-ignore
           user: item,
           ...user,
         });

@@ -1,12 +1,15 @@
 import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
+
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+
 import http from 'http';
 import multer from 'multer';
 import compression from 'compression';
 import cors from 'cors';
 
-import { graphqlUploadExpress } from 'graphql-upload';
+// import { graphqlUploadExpress } from 'graphql-upload';
 import { execute, subscribe } from 'graphql';
 
 import { typeDefs } from './apollo/typeDefs';
@@ -14,9 +17,11 @@ import { resolvers } from './apollo/resolvers';
 
 import { router as routeMain } from './routes/main';
 
-import Keycloak from 'keycloak-connect';
+// import Keycloak from 'keycloak-connect';
 import session from 'express-session';
-import jwt from 'jsonwebtoken';
+
+import memorystore from 'memorystore';
+// import jwt from 'jsonwebtoken';
 
 import { port as defaultPort } from '../../../common/config/url';
 import { joinPath } from '../../../common/utils/path';
@@ -24,10 +29,20 @@ import { connectDb } from './data/mongo';
 
 import { allRoutes, login, allEditorRoutes } from '../../../common/routerPaths';
 import { fork } from 'child_process';
-import { Auth } from '../../../common/auth/auth.h';
-import { User } from './data/user';
+// import { Auth } from '../../../common/auth/auth.h';
+// import { User } from './data/user';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
+
+import bodyParser from 'body-parser';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+
+const { json } = bodyParser;
+
+const MemoryStore = memorystore(session)
+
+interface MyContext {
+  token?: String;
+}
 
 async function startApolloServer() {
   const app = express();
@@ -47,81 +62,88 @@ async function startApolloServer() {
     })
   );
   
-  const store = new session.MemoryStore();
+  // const store = new session.MemoryStore();
     
-  const secret = 'e6b3abe7-0614-4f06-a153-c73bfefc177b';
+  const secret = 'keyboard cat';
   
   app.use(session({
-    secret,
+    cookie: { maxAge: 86400000, secure: true},
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-  }));
+    secret,
+}))
 
-  const keycloak = new Keycloak({ store });
 
-  app.use(keycloak.middleware({
-    logout: '/logout',
-    admin: '/'
-  }));
+  // const keycloak = new Keycloak({ store });
+
+  // app.use(keycloak.middleware({
+  //   logout: '/logout',
+  //   admin: '/'
+  // }));
   
-  app.get('/check-sso', keycloak.checkSso(), function (req, res) {
-    try {
-      // @ts-ignore
-      const { access_token } = JSON.parse(req.session['keycloak-token']);
-      const decoded = jwt.decode(access_token) as Auth;
+  // app.get('/check-sso', keycloak.checkSso(), function (req, res) {
+  //   try {
+  //     // @ts-ignore
+  //     const { access_token } = JSON.parse(req.session['keycloak-token']);
+  //     const decoded = jwt.decode(access_token) as Auth;
   
-      const {
-        name,
-        preferred_username,
-        given_name,
-        family_name,
-        email,
-        realm_access,
-      } = decoded;
+  //     const {
+  //       name,
+  //       preferred_username,
+  //       given_name,
+  //       family_name,
+  //       email,
+  //       realm_access,
+  //     } = decoded;
   
-      res.json({
-        name,
-        preferred_username,
-        given_name,
-        family_name,
-        email,
-        realm_access,
-      });
-    } catch (error) {
-      res.sendStatus(401);
-    }
-  });
+  //     res.json({
+  //       name,
+  //       preferred_username,
+  //       given_name,
+  //       family_name,
+  //       email,
+  //       realm_access,
+  //     });
+  //   } catch (error) {
+  //     res.sendStatus(401);
+  //   }
+  // });
   
-  app.get('/login', keycloak.protect(), async (req, res) => {
-    try {
-      // @ts-ignore
-      const { access_token } = JSON.parse(req.session['keycloak-token']);
-      const decoded = jwt.decode(access_token) as Auth;
-      const {
-        name,
-        preferred_username,
-        email,
-      } = decoded;
+  // app.get('/login', keycloak.protect(), async (req, res) => {
+  //   try {
+  //     // @ts-ignore
+  //     const { access_token } = JSON.parse(req.session['keycloak-token']);
+  //     const decoded = jwt.decode(access_token) as Auth;
+  //     const {
+  //       name,
+  //       preferred_username,
+  //       email,
+  //     } = decoded;
   
-      // @ts-ignore
-      const user = await User.userByName(preferred_username);
-      if (!user) {
-        const newUserFromAD = new User({
-          username: preferred_username,
-          name,
-          email,
-        });
+  //     // @ts-ignore
+  //     const user = await User.userByName(preferred_username);
+  //     if (!user) {
+  //       const newUserFromAD = new User({
+  //         username: preferred_username,
+  //         name,
+  //         email,
+  //       });
   
-        await newUserFromAD.save();
-      }
+  //       await newUserFromAD.save();
+  //     }
   
-      res.redirect('/');
-    }
-    catch (error) {
-      res.sendStatus(401);
-    }
-  });
+  //     res.redirect('/');
+  //   }
+  //   catch (error) {
+  //     res.sendStatus(401);
+  //   }
+  // });
+
+  app.get('/check-sso', function (req, res) {
+    res.sendStatus(401);
+  })
   
   app.get([...allRoutes, ...allEditorRoutes, login], routeMain);
   
@@ -160,8 +182,16 @@ async function startApolloServer() {
     resolvers,
   });
 
-  const server = new ApolloServer({
-    schema,
+
+  const subscriptionServer = SubscriptionServer.create(
+    // @ts-ignore
+    { schema, execute, subscribe },
+    { server: httpServer, path: '/subscriptions' }
+  );
+
+  const server = new ApolloServer<MyContext>({
+    typeDefs,
+    resolvers,
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
       {
@@ -176,13 +206,18 @@ async function startApolloServer() {
     ],
   });
 
-  const subscriptionServer = SubscriptionServer.create(
-    // @ts-ignore
-    { schema, execute, subscribe },
-    { server: httpServer, path: '/subscriptions' }
+  await server.start();
+  
+  app.use(
+    '/graphql',
+    cors<cors.CorsRequest>(),
+    json(),
+    expressMiddleware(server, {
+      context: async ({ req }) => ({ token: req.headers.token }),
+    }),
   );
 
-  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  // app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
   app.get('/404-1', (_req, res) => {
     res.sendFile(`public/404-1.html`, { root: process.cwd() });
@@ -213,15 +248,13 @@ async function startApolloServer() {
     res.sendFile(`public/404-${fonFountVariant}.html`, { root: process.cwd() });
   });
 
-  await server.start();
-
-  server.applyMiddleware({ app });
-
   const port = process.env.PORT || defaultPort;
 
   await new Promise<void>(resolve => httpServer.listen({ port }, resolve));
 
-  console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+
+  // console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
 }
 
 connectDb().then(async () => {

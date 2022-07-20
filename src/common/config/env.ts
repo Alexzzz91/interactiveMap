@@ -12,7 +12,6 @@ export const logDir = 'logs/server';
 export const logLevel = 'errors.log';
 export const logName = 'info';
 
-// export const mongoUrl = 'mongodb://10.101.161.245:27017';
 export const mongoUrl = 'mongodb://mongo:27017';
 
 export const firebaseConfig = {

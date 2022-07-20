@@ -1,4 +1,4 @@
-FROM docker-mirror.artifactory.at.ivi.ru/base/ubuntu:xenial-latest
+FROM ubuntu:xenial-20191108
 
 ENV TERM=xterm \
     DEBIAN_FRONTEND=noninteractive
@@ -28,8 +28,7 @@ RUN set -ex && \
 RUN set -ex && \
     npm install pm2 -g && \
     npm ci install && \
-    yarn tsc && \
-    yarn build
+    yarn tsc
 
 ENTRYPOINT ["pm2-runtime", "/var/www/pm2.config.js"]
 
