@@ -1,0 +1,111 @@
+{
+    "theme_color": "#25213F",
+    "background_color": "#F6F5FF",
+    "display_override": ["window-control-overlay", "minimal-ui"],
+    "display": "standalone",
+    "orientation": "any",
+    "scope": "/",
+    "start_url": "/?source=pwa",
+    "name": "\u041a\u0430\u0440\u0442\u0430 \u041e\u0444\u0438\u0441\u0430 PWA",
+    "short_name": "\u041a\u0430\u0440\u0442\u0430 \u041e\u0444\u0438\u0441\u0430",
+    "description": "\u041f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0434\u043b\u044f \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u0438 \u043f\u043e \u043e\u0444\u0438\u0441\u0443",
+    "icons": [
+        {
+            "src": "icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+          "name": "План первого этажа",
+          "short_name": "1-ый этаж",
+          "description": "Быстрый переход на план первого этажа",
+          "url": "/fl1?source=pwa"
+        },
+        {
+            "name": "План второго этажа",
+            "short_name": "2-ой этаж",
+            "description": "Быстрый переход на план второго этажа",
+            "url": "/fl2?source=pwa"
+        },
+        {
+            "name": "План третьего этажа",
+            "short_name": "3-ий этаж",
+            "description": "Быстрый переход на план третьего этажа",
+            "url": "/fl3?source=pwa"
+        },
+        {
+            "name": "План четвертого этажа",
+            "short_name": "4-ый этаж",
+            "description": "Быстрый переход на план четвертого этажа",
+            "url": "/fl4?source=pwa"
+        },
+        {
+            "name": "План пятого этажа",
+            "short_name": "5-ый этаж",
+            "description": "Быстрый переход на план пятого этажа",
+            "url": "/fl5?source=pwa"
+        },
+        {
+            "name": "План шестого этажа",
+            "short_name": "6-ой этаж",
+            "description": "Быстрый переход на план шестого этажа",
+            "url": "/fl6?source=pwa"
+        }
+    ],
+    "screenshots":[
+        {
+           "src":"screenshots/first.png",
+           "sizes":"586x1041",
+           "type":"image/png"
+        },
+        {
+           "src":"screenshots/second.png",
+           "sizes":"586x1041",
+           "type":"image/png"
+        },
+        {
+            "src":"screenshots/third.png",
+            "sizes":"586x1041",
+            "type":"image/png"
+        }
+    ],
+    "share_target":{
+        "action":"compose/post",
+        "enctype":"multipart/form-data",
+        "method":"POST",
+        "params":{
+            "title":"title",
+            "text":"text",
+            "url":"url",
+            "files":[
+                {
+                    "name":"externalMedia",
+                    "accept":[
+                    "image/jpeg",
+                    "image/png",
+                    "image/gif",
+                    "video/quicktime",
+                    "video/mp4"
+                    ]
+                }
+            ]
+        }
+    }
+}

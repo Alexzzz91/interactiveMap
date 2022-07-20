@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "lib": ["webworker", "es6"],
+        "types": [],
+        "outDir": "./assets",                       /* Redirect output structure to the directory. */
+        "rootDir": "./src/serviceWorker", 
+    },
+    "exclude": [
+        "./dist",
+        "./assets/legendIcons/",
+        "./src/client",
+        "./src/common",
+        "./src/server",
+    ]
+}

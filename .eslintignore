@@ -1,0 +1,7 @@
+/src/server/build/
+/src/server/build/common
+/src/server/build/common/components
+/src/server/build/common/components/icons
+/src/client/threejs.js
+__tests__/
+keycloak-js.js

@@ -1,0 +1,29 @@
+/* Box button */
+.boxbutton {
+	font-size: 2em;
+	display: block;
+	width: 1em;
+	height: 1em;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	border: 0;
+  background: #f8104d;
+  cursor: pointer;
+  &__dark {
+    background: #1a143b;
+  }
+
+  &__small {
+    width: 1em;
+	  height: 1em;
+  }
+
+  &__disabled,
+  &__disabled:focus,
+  &__disabled:hover {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}

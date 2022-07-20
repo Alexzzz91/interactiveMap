@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "use-const-enum",
+    ["import", { "libraryName": "antd", "style": true }]
+  ],
+  "presets": [
+    "@babel/react",
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 Chrome versions"]
+      }
+    }]
+  ]
+}

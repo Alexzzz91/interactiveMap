@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .words {
+            color: #fff;
+            font-size: 0;
+            line-height: 1.5;
+            letter-spacing: .1rem;
+        }
+
+        .words span {
+            font-size: 2rem;
+            font-weight: 800;
+            display: inline-block;
+            animation: move 3s ease-in-out infinite;
+        }
+
+        .word-1 span {
+            font-size: 5rem;
+        }
+
+        .back-btn {
+            margin-top: 5rem;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate(-30%, 0);
+            }
+            50% {
+                text-shadow: 0 25px 50px rgba(0, 0, 0, 0.75);
+            }
+            100% {
+                transform: translate(30%, 0);
+            }
+        }
+
+        .words span:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .words span:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .words span:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        .words span:nth-child(5) {
+            animation-delay: 2s;
+        }
+
+        .words span:nth-child(6) {
+            animation-delay: 2.5s;
+        }
+
+        .words span:nth-child(7) {
+            animation-delay: 3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="words word-1">
+        <span>4</span>
+        <span>0</span>
+        <span>4</span>
+      </div>
+      
+      <div class="words word-2">
+        <span>Н</span>
+        <span>И</span>
+        <span>Ч</span>
+        <span>Е</span>
+        <span>Г</span>
+        <span>О</span>
+      </div>
+      
+      <div class="words word-3">
+        <span>Н</span>
+        <span>Е</span>
+      </div>
+      
+      <div class="words word-4">
+        <span>Н</span>
+        <span>А</span>
+        <span>Й</span>
+        <span>Д</span>
+        <span>Е</span>
+        <span>Н</span>
+        <span>О</span>
+      </div>
+      
+      
+      <a href="/" class="words word-5 back-btn">
+        <span>Н</span>
+        <span>А</span>
+        <span> &nbsp; </span>
+        <span>Г</span>
+        <span>Л</span>
+        <span>А</span>
+        <span>В</span>
+        <span>Н</span>
+        <span>У</span>
+        <span>Ю</span>
+      </a>
+</body>
+</html>

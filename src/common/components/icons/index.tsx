@@ -1,0 +1,7 @@
+export { default as Add48 } from './Add48'
+export { default as Close } from './Close'
+export { default as Add } from './Add'
+export { default as Eye } from './Eye'
+export { default as Group } from './Group'
+export { default as IconOk } from './IconOk'
+export { default as Pen } from './Pen'

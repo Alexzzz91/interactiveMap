@@ -1,0 +1,68 @@
+body {
+	padding: 0;
+	margin: 0;
+	position: relative;
+	height: 100vh;
+	font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #ffffff;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: -webkit-box;
+}
+
+:root {
+    --menuPaneWidth: 360px;
+	--menuElemsOffsetLeft: 16px;
+}
+
+*[role="button"] {
+  cursor: pointer;
+}
+
+*,
+*::after,
+*::before {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: #aaa;
+	outline: none;
+}
+svg{
+	fill: white;
+}
+
+ 
+svg .meetingRoom{ 
+	fill:#FCE3FA;
+}
+svg .toulet{ 
+	fill:#DEF2FF;
+}
+svg .department{ 
+	fill:#F0FFEE;
+}
+svg .stairsAndLifts{ 
+	fill:#EDE9FF;
+}
+
+
+a:hover,
+button:hover {
+	color: #515158;
+	outline: none;
+}
+
+a:focus,
+button:focus {
+	outline: none;
+}

@@ -1,0 +1,52 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "jsx": "react",
+        "target": "ES6",
+        "strict": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "traceResolution": false,
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "esModuleInterop": true,
+        "declaration": false,
+        "noResolve": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "strictNullChecks": false,
+        "sourceMap": false,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "typeRoots": [
+            "custom_typings",
+            "node_modules/@types",
+        ],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+          ],
+        "noEmit": true,
+        "baseUrl": "../",
+        "paths": {
+            "*": ["node_modules/*"],
+            "@server/*": ["server/*"],
+            "@client/*": ["client/*"],
+            "@routes/*": ["server/routes/*"],
+            "@public/*": ["public/*"],
+            "@secure/*": ["secure/*"],
+            "@utils/*": ["utils/*"],
+        },
+    },
+    "include": [
+        "src", "workbox-config.js",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "build",
+        "public"
+    ]
+}

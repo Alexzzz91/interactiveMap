@@ -1,0 +1,35 @@
+@font-face {
+  font-family: iviSans;
+  font-weight: 900;
+  font-style: normal;
+  src: url(../fonts/iviSans-Black.otf) format('opentype'),
+       url(../fonts/iviSans-Black.woff) format('woff'),
+       local('☺');
+}
+
+@font-face {
+  font-family: iviSans;
+  font-weight: 700;
+  font-style: normal;
+  src: url(../fonts/iviSans-Bold.otf) format('opentype'),
+       url(../fonts/iviSans-Bold.woff) format('woff'),
+       local('☺');
+}
+
+@font-face {
+  font-family: iviSans;
+  font-weight: 500;
+  font-style: normal;
+  src: url(../fonts/iviSans-Medium.otf) format('opentype'),
+       url(../fonts/iviSans-Medium.woff) format('woff'),
+       local('☺');
+}
+
+@font-face {
+  font-family: iviSans;
+  font-weight: 400;
+  font-style: normal;
+  src: url(../fonts/iviSans-Regular.otf) format('opentype'),
+       url(../fonts/iviSans-Regular.woff) format('woff'),
+       local('☺');
+}

@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+  ivimap:
+    build: ./
+    container_name: ivimap
+    hostname: ivimap
+    ports:
+    - 80:80
+    - 9229:9229
+    volumes:
+    - './:/var/www'
+    stdin_open: true
+    tty: true
+    depends_on:
+    - mongo
+    networks:
+    - ivimap-network
+    environment:
+      PM2_CONFIG: pm2.dev.config.js
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    hostname: mongo
+    ports:
+    - 27017:27017
+    networks:
+    - ivimap-network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    hostname: mongo-express
+    ports:
+    - 8089:8089
+    - 8881:8081
+    networks:
+    - ivimap-network
+    depends_on:
+    - mongo
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
+networks:
+  ivimap-network:
