@@ -1,4 +1,4 @@
-FROM docker-mirror.artifactory.at.ivi.ru/base/ubuntu:xenial-latest
+FROM ubuntu:xenial-20191108
 
 ENV TERM=xterm \
     DEBIAN_FRONTEND=noninteractive

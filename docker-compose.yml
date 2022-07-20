@@ -1,10 +1,10 @@
 version: '3.3'
 
 services:
-  ivimap:
+  interactivemap:
     build: ./
-    container_name: ivimap
-    hostname: ivimap
+    container_name: interactivemap
+    hostname: interactivemap
     ports:
     - 80:80
     - 9229:9229
@@ -15,7 +15,7 @@ services:
     depends_on:
     - mongo
     networks:
-    - ivimap-network
+    - interactivemap-network
     environment:
       PM2_CONFIG: pm2.dev.config.js
 
@@ -26,7 +26,7 @@ services:
     ports:
     - 27017:27017
     networks:
-    - ivimap-network
+    - interactivemap-network
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -39,7 +39,7 @@ services:
     - 8089:8089
     - 8881:8081
     networks:
-    - ivimap-network
+    - interactivemap-network
     depends_on:
     - mongo
     environment:
@@ -47,4 +47,4 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
 
 networks:
-  ivimap-network:
+  interactivemap-network:
