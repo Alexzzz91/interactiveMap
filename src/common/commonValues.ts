@@ -139,6 +139,7 @@ const themeColors: ThemeColors = {
     nara: "#E7E3FF",
     tanga: "#3A355A",
     santiago: "#F6F5FF",
+    santiago_low: "#fbfbff",
     beirut: "#73A32F",
     kano: "#FF6E94",
     muar: "#FF8469",
@@ -224,8 +225,12 @@ const themeColors: ThemeColors = {
 
 const darkThemeColors: ThemeColors = {
     ...themeColors,
-    kabul: "#25213F",
+    kabul: "#aaa0ea",
     sofia: "#25213F",
+    santiago:  "#2d265a",
+    santiago_low: "#181629",
+    london: '#fbfbff',
+    nara:  "#251d5a",
 };
 
 export {

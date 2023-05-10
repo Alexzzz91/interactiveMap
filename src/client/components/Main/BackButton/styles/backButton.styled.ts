@@ -9,7 +9,7 @@ const BackButtonStyled = styled(Link)`
     cursor: pointer;
     position: absolute;
     color: ${({ theme }) => (theme.color.london)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0px;

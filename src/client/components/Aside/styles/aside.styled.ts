@@ -31,7 +31,7 @@ const AsideStyled = styled.aside<AsideProps>`
         min-height: 100vh;
         transform: translateX(0%);
         bottom: unset;
-        padding: 16px 0;
+        padding: 8px 0;
     }
 `;
 
@@ -41,7 +41,9 @@ const TopBlockStyled = styled.div`
 `;
 
 const ListInnerStyled = styled.div`
-    background: ${({ theme }) => (theme.color.santiago)};
+    background: ${({ theme }) => (theme.color.santiago)};    
+    box-shadow: 0px 0px 20px 2px ${({ theme }) => (theme.color.nara)};
+    padding: 2px;
     display: flex;
     flex-direction: column;
     height: inherit;
@@ -51,7 +53,6 @@ const ListInnerStyled = styled.div`
     padding: 12px;
     padding-bottom: 6px;
     transition: transform 1s, opacity 1s, -webkit-transform 1s;
-
 `;
 
 const MobileButtonStyled = styled.div`
@@ -86,7 +87,7 @@ const UpdateButtonStyled = styled.span`
     padding-top: 24px;
     display: flex;
     padding: 0;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 10px;
     line-height: 11px;
     letter-spacing: 0px;

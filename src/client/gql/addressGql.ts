@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { CityData } from './cityGql';
 
 const addressQuery = gql`
     query GetAddresses {
@@ -6,8 +7,33 @@ const addressQuery = gql`
             id
             name
             textDescription
+            city {
+                id
+            }
         }
     }
+`;
+
+const createAddress = gql`
+  mutation CreateAddress(
+    $name: String!, 
+    $textDescription: String!,
+    $city: String!,
+  ) {
+    createAddress(
+      name: $name,
+      textDescription: $textDescription,
+      city: $city,
+    ) {
+      id
+      name
+      textDescription
+      city {
+        id
+        name
+      }
+    }
+  }
 `;
 
 interface AddressData {
@@ -15,6 +41,7 @@ interface AddressData {
     id: string;
     name: string;
     textDescription?: string;
+    city?: CityData;
 }
   
 interface AddressQueryData {
@@ -23,6 +50,7 @@ interface AddressQueryData {
 
 export {
     addressQuery,
+    createAddress,
 };
 
 export type {

@@ -7,7 +7,7 @@ const ContainerStyled = styled.div`
 
 const TitleStyled = styled.h5`
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 19px;
     letter-spacing: 0px;
@@ -29,7 +29,7 @@ const LayerItemStyled = styled.li<LayerItemProps>`
     background-color: ${({ theme }) => theme.color.nara};
     color: ${({ theme }) => theme.color.london};
     display: flex;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0px;

@@ -27,7 +27,7 @@ import { port as defaultPort } from '../../../common/config/url';
 import { joinPath } from '../../../common/utils/path';
 import { connectDb } from './data/mongo';
 
-import { allRoutes, login, allEditorRoutes } from '../../../common/routerPaths';
+import { allRoutes, login, allEditorRoutes, administrationRoute } from '../../../common/routerPaths';
 import { fork } from 'child_process';
 // import { Auth } from '../../../common/auth/auth.h';
 // import { User } from './data/user';
@@ -141,11 +141,11 @@ async function startApolloServer() {
   //   }
   // });
 
-  app.get('/check-sso', function (req, res) {
+  app.get('/check-sso', function (_req, res) {
     res.sendStatus(401);
   })
   
-  app.get([...allRoutes, ...allEditorRoutes, login], routeMain);
+  app.get([...allRoutes, ...allEditorRoutes, login, administrationRoute], routeMain);
   
   // Ручка для загрузки новых данных пользователей
 
@@ -252,7 +252,7 @@ async function startApolloServer() {
 
   await new Promise<void>(resolve => httpServer.listen({ port }, resolve));
 
-  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+  console.log(`🚀 Server ready at http://localhost:${port}/graphql`);
 
   // console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
 }

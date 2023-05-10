@@ -12,8 +12,6 @@ const MainContainer: React.FC = (_props) => {
     variables: { limit: 1 },
   });
 
-  const { data: addressData } = useQuery<AddressQueryData>(addressQuery);
-
   React.useEffect(() => {
     if (!loading && !error && data?.moreFloors?.pageInfo?.hasNext) {
       fetchMore({
@@ -42,7 +40,6 @@ const MainContainer: React.FC = (_props) => {
   return (
     <Main 
       floors={moreFloors?.results ?? []} 
-      address={addressData}
     />
   );
 };

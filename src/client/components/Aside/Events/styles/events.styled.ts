@@ -7,7 +7,7 @@ const ContainerStyled = styled.div`
     width: 45px;
     color: ${({ theme }) => (theme.color.tanga)};
     text-align: center;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0px;
@@ -169,7 +169,7 @@ const AsLink = styled(Link)`
     min-height: 34px;
     max-height: 52px;
     padding: 0 12px;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     color: ${({ theme }) => (theme.color.london)};
@@ -196,7 +196,7 @@ const NotificationActionStyled = styled.div`
     cursor: pointer;
     transition: 0.4s;
     color: ${({ theme }) => (theme.color.berbera)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 18px;
     line-height: 24px;
 

@@ -8,7 +8,7 @@ const PersonContainerStyled = styled.div`
 `;
 
 const DepartmentNameStyled = styled.div`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     font-weight: medium;
@@ -24,7 +24,7 @@ const EmptyPlaceContainerStyled = styled.div`
 `;
 
 const EmptyPlaceNotiveStyled = styled.div`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0em;

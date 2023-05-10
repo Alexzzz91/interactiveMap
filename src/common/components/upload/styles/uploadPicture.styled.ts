@@ -10,7 +10,7 @@ const UploadSectionStyled = styled.div`
     min-height: 200px;
     width: 290px;
 
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0px;
@@ -47,7 +47,7 @@ const ImgPreviewStyled = styled.img`
 
 const ClearPreview = styled.span`
     display: flex;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-weight: bold;
     font-size: 20px;
     line-height: 24px;

@@ -10,7 +10,7 @@ const ToastContainerStyled = styled(ToastContainer)`
     > div {
         background: ${({theme}) => theme.color.london};
         padding: 12px 20px;
-        font-family: iviSans;
+        font-family: sans-serif;
         font-size: 13px;
         line-height: 16px;
         letter-spacing: 0px;

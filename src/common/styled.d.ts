@@ -8,6 +8,7 @@ type ThemeColors = {
     nara: string;
     tanga: string;
     santiago: string;
+    santiago_low: string;
     beirut: string;
     kano: string;
     muar: string;

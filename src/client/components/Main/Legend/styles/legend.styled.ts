@@ -68,7 +68,7 @@ const ListStyled = styled.div`
 
 const RowStyled = styled.div`
     display: flex;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0px;

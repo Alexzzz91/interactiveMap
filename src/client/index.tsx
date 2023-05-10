@@ -14,7 +14,7 @@ import { getAnalytics } from "firebase/analytics";
 import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist';
 
 import { ThemeProvider } from 'styled-components';
-import { themes } from './Theme';
+import { ThemeName, themes } from './Theme';
 import {
   origin,
   WSorigin
@@ -34,7 +34,7 @@ import { toast } from 'react-toastify';
 import { firebaseConfig } from '../common/config/env';
 import { useClearAll } from '../common/utils/clearAll';
 import { CacheBehaviour } from '../common/utils/CacheBehaviour';
-// import { ThemeChanger } from './components/ThemeChanger';
+import { ThemeChanger } from './components/ThemeChanger';
 
 const httpLink = new createUploadLink({
   uri: `${origin()}/graphql`
@@ -61,7 +61,7 @@ const splitLink = split(
 
 
 const Root = () => {
-  const [currentTheme, setCurrentTheme] = React.useState<string>('main');
+  const [currentTheme, setCurrentTheme] = React.useState<ThemeName>(ThemeName.MAIN);
   const [client, setClient] = React.useState<ApolloClient<NormalizedCacheObject>>();
   const [_persistor, setPersistor] = React.useState<CachePersistor<NormalizedCacheObject>>();
   
@@ -78,11 +78,10 @@ const Root = () => {
       let newPersistor = new CachePersistor({
         cache,
         storage: new LocalStorageWrapper(window.localStorage),
-        key: 'officeMap-cache',
+        key: 'interactive_map-cache',
         trigger: 'write',
         debug: true,
         maxSize: false,
-        
       });
 
       await newPersistor.restore();
@@ -91,7 +90,7 @@ const Root = () => {
       const apolloClient = new ApolloClient({
         link: splitLink,
         cache,
-        name: 'officeMap-web-client',
+        name: 'interactive_map-web-client',
         version: '1.2'
       });
 
@@ -214,7 +213,7 @@ const Root = () => {
           <GlobalStyle />
           <App />
           <ToastContainerStyled />
-          {/* <ThemeChanger setCurrentTheme={setCurrentTheme} /> */}
+          <ThemeChanger currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} />
         </ApolloProvider>
       </ThemeProvider>
     </React.StrictMode>

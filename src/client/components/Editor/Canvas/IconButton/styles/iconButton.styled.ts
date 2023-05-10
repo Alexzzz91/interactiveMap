@@ -8,7 +8,7 @@ const IconButtonStyled = styled.button<IconButtonProps>`
     border: 0px;
     width: 56px;
     height: 56px;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;

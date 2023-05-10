@@ -1,6 +1,6 @@
 // @ts-nocheck
 const config = {
-  canvasName: 'officeMap',
+  canvasName: 'interactive_map',
   // The minimum area visible outside the canvas, as a multiple of the image dimensions.
   // The larger the number, the more one can scroll outside the canvas.
   canvas_expansion: 1.5,

@@ -45,7 +45,7 @@
     - 8089:8089
     - 8881:8081
     networks:
-    - ivimap-network
+    - interactivemap-network
     depends_on:
     - mongo
     environment:

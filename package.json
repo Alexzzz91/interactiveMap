@@ -1,5 +1,5 @@
 {
-  "name": "ivi_interactive_map",
+  "name": "interactive_map",
   "version": "2.0.0",
   "description": "Interactive map for search departments position and staff",
   "source": "src/client/index.tsx",
@@ -124,6 +124,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/react-draft-wysiwyg": "^1.13.3",
+    "@types/react-modal": "^3.16.0",
     "@types/react-router-dom": "^5.1.4",
     "@types/react-svg-inline": "2.1.1",
     "@types/request": "^2.48.7",
@@ -190,6 +191,7 @@
     "react-draft-wysiwyg": "^1.14.7",
     "react-helmet": "6.1.0",
     "react-hot-loader": "^4.12.18",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^5.1.2",
     "react-svg-inline": "^2.1.1",
     "react-toastify": "^7.0.3",

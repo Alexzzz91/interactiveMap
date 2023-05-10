@@ -49,7 +49,7 @@ const typeDefs = gql`
     id: String!
     name: String!
     fl: Int!
-    addresses: Addresses
+    address: Address
     levelSchema: String!
   }
 
@@ -87,10 +87,17 @@ const typeDefs = gql`
     textDescription: String
   }
 
-  type Addresses {
+  type City {
+    id: String
+    name: String
+    textDescription: String
+  }
+
+  type Address {
     id: String!
     name: String!
-    textDescription: String!
+    textDescription: String
+    city: City
   }
 
   type TablesHashes {
@@ -175,7 +182,11 @@ const typeDefs = gql`
     
     events: [Event]
 
-    addresses: [Addresses]
+    city(id: String!): City
+    cities: [City]
+
+    address(id: String!): Address
+    addresses: [Address]
   }
 
   type Mutation {
@@ -278,6 +289,7 @@ const typeDefs = gql`
 
     removeUserWorkplaceId(id: String!): Void
     removeUserMapId(id: String!): Void
+
     createEvent(  
       name: String!,
       location: String!,
@@ -288,6 +300,17 @@ const typeDefs = gql`
       floorIndex: String,
       author: String,
     ): Event
+
+    createCity(  
+      name: String!,
+      textDescription: String!,
+    ): City
+
+    createAddress(  
+      name: String!,
+      textDescription: String!,
+      city: String!,
+    ): Address
   }
 
   scalar Upload

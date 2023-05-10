@@ -10,7 +10,7 @@ const GroupButtonListStyled = styled.div`
 const NoActionsStyled = styled.div`
     display: flex;
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     width: 100%;

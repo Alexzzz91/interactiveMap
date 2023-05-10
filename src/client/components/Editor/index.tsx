@@ -9,8 +9,7 @@ import { IParamsProps } from '../app';
 import { UploadFile } from './UploadFile';
 import { editorAddRoute } from '../../../common/routerPaths';
 import { initialLevel } from './initialLevel';
-import { addressQuery, AddressQueryData } from '../../gql/addressGql';
-import { AddressRowContainer } from '../common/AddressSelect';
+import { CityAdressRow } from '../common/CityAdressRow';
 
 const Editor = React.lazy(() => import('./Editor'));
 
@@ -24,9 +23,6 @@ const defaultLayersName = {
 const EditorContainer: React.FC = () => {
   const location = useLocation();
   const { floorIndex } = useParams<IParamsProps>();
-  const { data: addressData } = useQuery<AddressQueryData>(addressQuery);
-
-  console.log('addressData', addressData);
 
   const { loading, error, data } = useQuery<FloorByIndexQueryData>(floorByIndexQuery, {
     variables: { 
@@ -54,7 +50,7 @@ const EditorContainer: React.FC = () => {
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <AddressRowContainer />
+      <CityAdressRow />
       <Editor initialSvgContent={floorByIndex?.levelSchema || initialLevel} />
     </React.Suspense>
   );

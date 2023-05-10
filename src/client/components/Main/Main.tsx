@@ -25,19 +25,15 @@ import {
   PlanTopRowStyled,
   NoFloorsMesageStyled,
 } from './styles/main.styled';
-import { AddressQueryData } from '../../gql/addressGql';
-import { AddressRowContainer } from '../common/AddressSelect';
+import { CityAdressRow } from '../common/CityAdressRow';
 
 type MainProps = {
     floors: FloorData[]
-    address?: AddressQueryData;
 };
 
 const Main: React.FC<MainProps>  = ({ floors, address }) => {
   const { pathname, search } = useLocation();
   const { canEdit } = parseQuery(search);
-
-  console.log('address', address);
 
   // @ts-ignore
   const auth = React.useContext<Auth | null>(AuthContext);
@@ -65,7 +61,7 @@ const Main: React.FC<MainProps>  = ({ floors, address }) => {
           <MallStyled>
             <PlanTopRowStyled>
 
-              <AddressRowContainer />
+              <CityAdressRow />
 
               {!!floorIndex && (
                 <BackButton floorIndex={floorIndex} />

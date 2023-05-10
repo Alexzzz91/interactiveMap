@@ -36,7 +36,7 @@ const IconsRowStyled = styled.div`
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     align-items: center;

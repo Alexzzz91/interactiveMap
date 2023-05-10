@@ -9,7 +9,7 @@ const Item = styled(Link)`
     min-height: 34px;
     max-height: 52px;
     padding: 0 12px;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     color: ${({ theme }) => (theme.color.london)};

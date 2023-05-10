@@ -66,7 +66,7 @@ const TopRightBarStyled = styled.div`
     cursor: pointer;
     position: absolute;
     color: ${({ theme }) => (theme.color.london)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 12px;
     line-height: 12px;
     letter-spacing: 0px;
@@ -79,6 +79,7 @@ const TopRightBarStyled = styled.div`
 const GoToEditorLinkStyled = styled.div`
     display: flex;
     position: relative;
+    color: ${({ theme }) => (theme.color.london)};
     
     &::after {
         background-color: ${({ theme }) => (theme.color.fes)};
@@ -96,7 +97,7 @@ const GoToEditorButtonStyled = styled(Editor)`
     display: flex;
     cursor: pointer;
     color: ${({ theme }) => (theme.color.london)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 12px;
     line-height: 12px;
     letter-spacing: 0px;
@@ -110,7 +111,7 @@ const ClearPlacesStyled = styled(Link)`
     cursor: pointer;
     position: absolute;
     color: ${({ theme }) => (theme.color.london)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0px;
@@ -125,7 +126,7 @@ const PlanTopRowStyled = styled.div`
 const NoFloorsMesageStyled = styled.div`
     display: flex;
     color: ${({ theme }) => (theme.color.london)};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 18px;
     line-height: 24px;
     height: 100%;

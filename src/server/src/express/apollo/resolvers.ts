@@ -10,13 +10,14 @@ import { Department, IDepartment } from '../data/department';
 import { ILevel, Level } from '../data/level';
 import { IPlace, Place } from '../data/place';
 import { IPoster, Poster } from '../data/poster';
-import { Addresses } from '../data/addresses';
+import { Address} from '../data/address';
 
 import { Event } from '../data/event';
 // import { Void } from './scalarVoid';
 import { placeColors, placesType } from '../../../../common/commonValues';
 import storeUpload from './storeUpload';
 import { PubSub } from 'graphql-subscriptions';
+import { City } from '../data/city';
 
 const pubsub = new PubSub();
 const EVENT_CREATED = 'EVENT_CREATED';
@@ -73,6 +74,25 @@ const resolvers = {
 
                     if (!err) {
                         return floor;
+                    }
+
+                    throw err;
+                });
+            }
+
+            return null;
+        },
+    },
+    Address: {
+        // @ts-ignore
+        city(parent) {
+            console.log('parent', parent);
+            if (parent.city) {
+                // @ts-ignore
+                return City.findById(parent.city, (err: CallbackError, city) => {
+
+                    if (!err) {
+                        return city;
                     }
 
                     throw err;
@@ -225,11 +245,47 @@ const resolvers = {
         // @ts-ignore
         tablesHashes: (_parent, args) => {},
 
+        address: async () => {
+            try {
+                const result =  await Address.find({});
+
+                console.log(result);
+
+                return result;
+            } catch (error) {
+                
+            }
+        },
+
         addresses: async () => {
-            console.log('address');
+            try {
+                const result =  await Address.find({});
+
+                console.log(result);
+
+                return result;
+            } catch (error) {
+                
+            }
+        },
+
+        city: async () => {
+            console.log('city');
 
             try {
-                const result =  await Addresses.find({});
+                const result =  await City.find({});
+
+                console.log(result);
+
+                return result;
+            } catch (error) {
+                
+            }
+        },
+
+        cities: async () => {
+            try {
+                const result =  await City.find({});
 
                 console.log(result);
 
@@ -253,7 +309,6 @@ const resolvers = {
                 isActual: true,
             };
 
-            console.log('findParams', findParams);
             try {
                 return await Event.find(findParams).sort({ lastActiveAt: -1 });
             } catch (error) {
@@ -656,6 +711,36 @@ const resolvers = {
             pubsub.publish(EVENT_CREATED, { eventCreated: res });
 
             return res;
+        },
+
+        // @ts-ignore
+        createCity: async (_parent, args) => {
+            try {
+                const res = await City.create(args);
+                return res;
+            } catch (error) {
+                throw error;
+            }
+        },
+
+        // @ts-ignore
+        createAddress: async (_parent, { city, ...rest }) => {
+            const cityModel = await City.findById(city);
+
+            city = null;
+
+            if (cityModel) {
+                city = cityModel._id;
+            } else {
+                throw 'Такого города нет в БД';
+            }
+
+            try {
+                const res = await Address.create({...rest, city})
+                return res;
+            } catch (error) {
+                throw error;
+            }
         },
     },
 

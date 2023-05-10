@@ -33,7 +33,7 @@ type ActionStyledProps = {
 const ActionStyled = styled.span<ActionStyledProps>`
     display: flex;
     padding: 0;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0px;

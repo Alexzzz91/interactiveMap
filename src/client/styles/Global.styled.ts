@@ -26,9 +26,9 @@ const GlobalStyle = createGlobalStyle`
         position: relative;
         height: 100vh;
         font-family: 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        color: #ffffff;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        color: ${({ theme }) => (theme.color.nara)};
     }
 
     #root {

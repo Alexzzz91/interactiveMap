@@ -9,7 +9,7 @@ class MapAppDb extends Dexie {
   departments: Dexie.Table<IDbDepartment, number>;
   
   constructor() {  
-    super("officeMap");
+    super("interactive_map");
 
     this.version(1).stores({
       staff: 'id, name, username, floor, [floor+mapid], [floor+workplaceid], isBirthday, inVacation',

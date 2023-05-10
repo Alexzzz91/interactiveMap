@@ -6,6 +6,8 @@ const ContainerStyled = styled.div`
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background: #fbfbff; 
+    background: ${({ theme }) => (theme.color.santiago_low)};    
 
     @media ${device.laptop} { 
         display: grid;

@@ -9,7 +9,7 @@ const GroupButtonStyled = styled.div<Props>`
     padding: 12px;
     background-color: ${({ theme }) => theme.color.nara};
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0px;

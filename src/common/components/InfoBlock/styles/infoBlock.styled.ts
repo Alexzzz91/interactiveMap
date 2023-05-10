@@ -29,7 +29,7 @@ type TitleProps = {
 };
 
 const TitleStyled = styled.span<TitleProps>`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0em;
@@ -43,7 +43,7 @@ const TitleStyled = styled.span<TitleProps>`
 `;
 
 const InfoTextStyled = styled.span`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0em;

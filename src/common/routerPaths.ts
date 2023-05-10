@@ -24,7 +24,7 @@ const allEditorRoutes = allRoutes.map((route) => `/editor${route}`);
 const editorAddRoute = '/editor/add'; 
 const administrationRoute = '/administration'; 
 
-allRoutes.push(administrationRoute);
+// allRoutes.push(administrationRoute);
 allEditorRoutes.push(editorAddRoute);
 
 export { 

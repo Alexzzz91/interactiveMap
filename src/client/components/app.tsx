@@ -8,7 +8,8 @@ import { AsideContainer } from './Aside/AsideContainer';
 import { administrationRoute, allEditorRoutes, allRoutes } from '../../common/routerPaths';
 import { ContainerStyled } from './styles/app.styled';
 import { EditorContainer } from './Editor';
-import { origin } from '../../common/config/url';
+import { useLocalStorage } from '../../common/hooks/useLocalStorage';
+// import { origin } from '../../common/config/url';
 import { Auth } from '../../common/auth/auth.h';
 import { AdminPage } from './AdminPage';
 
@@ -36,16 +37,28 @@ type IParamsProps = {
 };
 
 const AuthContext = React.createContext<Auth | null>(null);
+const ParamsContext = React.createContext(null);
 
 const App = () => {
+  const [currentCity, setCurrentCity] = useLocalStorage('currentCity', '');
+  const [currentAddress, setCurrentAddress] = useLocalStorage('canEdit', '');
   const [auth, setAuth] = React.useState<Auth | null>(null);
+
+  const currentParams = React.useMemo(() => {
+    return {
+      currentCity,
+      setCurrentCity,
+      currentAddress,
+      setCurrentAddress,
+    };
+  }, [currentCity, currentAddress]);
 
   React.useEffect(() => {
     const checkSso = async() => {
       try {
-        const response = await fetch(`${origin()}/check-sso`);
-        const auth = await response.json() as Auth;
-        setAuth(auth);
+        // const response = await fetch(`${origin()}/check-sso`);
+        // const auth = await response.json() as Auth;
+        // setAuth(auth);
       } catch (error) {
         console.error('error', error);
       }
@@ -56,34 +69,36 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={auth}>
-      <ContainerStyled>
-        <Router>
-          <Route
-            path={administrationRoute}
-            exact={true}
-          >
-            <AdminPage />
-          </Route>
-          <Route
-            path={allEditorRoutes}
-            exact={true}
-          >
-            <EditorContainer />
-          </Route>
+      <ParamsContext.Provider value={currentParams}>
+        <ContainerStyled>
+          <Router>
+            <Route
+              path={administrationRoute}
+              exact={true}
+            >
+              <AdminPage />
+            </Route>
+            <Route
+              path={allEditorRoutes}
+              exact={true}
+            >
+              <EditorContainer />
+            </Route>
 
-          <Route 
-            path={allRoutes}
-            exact={true}
-          >
-            <>
-              <MainContainer />
-              <AsideContainer> 
-                <Aside />
-              </AsideContainer>
-            </>
-          </Route>
-        </Router>
-      </ContainerStyled>
+            <Route 
+              path={allRoutes}
+              exact={true}
+            >
+              <>
+                <MainContainer />
+                <AsideContainer> 
+                  <Aside />
+                </AsideContainer>
+              </>
+            </Route>
+          </Router>
+        </ContainerStyled>
+      </ParamsContext.Provider>
     </AuthContext.Provider>
   );
 };
@@ -94,6 +109,7 @@ export {
   App,
   hotComponent as default,
   AuthContext,
+  ParamsContext,
   toastOptions,
 };
 

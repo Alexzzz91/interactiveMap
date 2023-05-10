@@ -7,7 +7,7 @@ const ErorrContainerStyled = styled.div`
     transition: all 0.5s ease-out;
     padding: 0 12px;
     justify-content: center;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 26px;
     line-height: 28px;
     color: ${({ theme }) => theme.color.london};

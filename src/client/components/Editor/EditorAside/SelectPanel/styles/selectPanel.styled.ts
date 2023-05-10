@@ -47,7 +47,7 @@ const ButtonStyled = styled.button`
     text-align: center;
     padding: 12px;
     display: flex;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0em;
@@ -90,7 +90,7 @@ const CustomResultInfoContainerStyled = styled.div`
 const CaptionStyled = styled.span`
     display: flex;
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0px;
@@ -102,7 +102,7 @@ const CaptionStyled = styled.span`
 const SubCaptionStyled = styled.span`
     display: block;
     color: ${({ theme }) => theme.color.london};
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0px;

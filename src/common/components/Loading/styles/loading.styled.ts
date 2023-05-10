@@ -24,7 +24,7 @@ const LoadingContainerStyled = styled.div<LoadingContainerProps>`
 `;
 
 const LoadingStyled = styled.span`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 26px;
     line-height: 28px;
     letter-spacing: 0em;

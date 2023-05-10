@@ -7,7 +7,8 @@ import { Level } from './level';
 import { Place } from './place';
 import { Poster } from './poster';
 import { Event } from './event';
-import { Addresses } from './addresses';
+import { City } from './city';
+import { Address } from './address';
 
 const connectDb = () =>
   mongoose.connect(mongoUrl, {
@@ -15,7 +16,7 @@ const connectDb = () =>
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true,
-    dbName: 'ivimap',
+    dbName: 'interactivemap',
     user: 'root',
     pass: 'example',
     // dbName: 'interactivemap',
@@ -31,7 +32,8 @@ const models = {
   Place,
   Poster,
   Event,
-  Addresses,
+  City,
+  Address,
 };
 
 mongoose.connection.once('open', () => {

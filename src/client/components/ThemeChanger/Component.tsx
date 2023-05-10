@@ -1,18 +1,22 @@
 import * as React from 'react';
-import { ThemeColors } from '../../../common/styled';
+import { ThemeName } from '../../Theme';
 
-import { ContainerStyled } from './styles/themeChanger.styled';
+import { ContainerStyled, MoonButtonStyled } from './styles/themeChanger.styled';
 
 type ThemeChangerProps = {
-    setCurrentTheme: (theme: ThemeColors) => void;
+  currentTheme: ThemeName;
+  setCurrentTheme: (theme: ThemeName) => void;
 };
 
-const ThemeChanger: React.FC<ThemeChangerProps> = ({ setCurrentTheme }) => {
+const ThemeChanger: React.FC<ThemeChangerProps> = ({ currentTheme, setCurrentTheme }) => {
+  const handleOnClick = React.useCallback(() => {
+    const nextThemeName = currentTheme === ThemeName.MAIN ? ThemeName.DARK : ThemeName.MAIN;
+    setCurrentTheme(nextThemeName)
+  }, [currentTheme])
+
   return (
     <ContainerStyled>
-        <button onClick={() => setCurrentTheme('dark')}>
-            темная \ светлая тема
-        </button>
+      <MoonButtonStyled onClick={handleOnClick} />
     </ContainerStyled>
   );
 };

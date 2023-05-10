@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { ThemeColors } from '../../../common/styled';
+import { ThemeName } from '../../Theme';
 
 type ThemeChangerProps = {
-  setCurrentTheme: (theme: ThemeColors) => void;
+  currentTheme: ThemeName;
+  setCurrentTheme: (theme: ThemeName) => void;
 };
 
-const Componet = React.lazy(() => import('./Component'));
+const Component = React.lazy(() => import('./Component'));
 
-const ThemeChanger: React.FC<ThemeChangerProps> = ({ setCurrentTheme }) => {
+const ThemeChanger: React.FC<ThemeChangerProps> = ({ currentTheme, setCurrentTheme }) => {
   return (
     <React.Suspense fallback={null}>
-      <Componet setCurrentTheme={setCurrentTheme} />
+      <Component currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} />
     </React.Suspense>
   );
 };

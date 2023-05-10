@@ -1,15 +1,21 @@
 import { DefaultTheme } from 'styled-components';
 import { themeColors, darkThemeColors } from '../common/commonValues';
 
+const enum ThemeName {
+    MAIN = 'main',
+    DARK = 'dark'
+}
+
 const themes: Record<string, DefaultTheme> = {
-    main: {
+    [ThemeName.MAIN]: {
         color: themeColors,
     },
-    dark: {
+    [ThemeName.DARK]: {
         color: darkThemeColors,
     }
 }
 
 export {
+    ThemeName,
     themes
 }

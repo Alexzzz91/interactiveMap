@@ -12,7 +12,7 @@ type DepartmentNameProps = {
 };
 
 const DepartmentNameStyled = styled.div<DepartmentNameProps>`
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 13px;
     line-height: 16px;
     font-weight: medium;

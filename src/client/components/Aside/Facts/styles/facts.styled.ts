@@ -62,7 +62,7 @@ const FactTextStyled = styled.span`
     display: block;
     color: ${({ theme }) => (theme.color.london)};
     text-align: center;
-    font-family: iviSans;
+    font-family: sans-serif;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0px;

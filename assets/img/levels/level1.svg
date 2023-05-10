@@ -1,5 +1,19 @@
-<svg xmlns:oi="http://oimotion.optimistik.fr/namespace/svg/OIdata" viewBox="0 0 804 362" width="804" height="362" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<svg xmlns:oi="http://oimotion.optimistik.fr/namespace/svg/OIdata" viewBox="0 0 804 362" width="804" height="362" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:se="http://svg-edit.googlecode.com">
  <style type="text/css">.level1st0{fill:#25213F;}.level1st1{fill:#C1BECB;stroke:#25213F;stroke-width:0.5;}.level1st2{fill:#C4C4C4;stroke:#25213F;stroke-width:0.5;}.level1st3{fill:#FFFFFF;}.level1st4{fill:none;stroke:#25213F;}.level1level1st10{fill-rule:evenodd;clip-rule:evenodd;fill:#25213F;}</style>
+ <defs>
+  <symbol id="svg_6" viewBox="0 0 26 17" xmlns="http://www.w3.org/2000/svg">
+   <rect fill="white" height="13" id="svg_28" stroke="#25213F" transform="rotate(180 25.5 13.5)" width="25" x="25.5" y="13.5"/>
+   <rect fill="#25213F" height="1" id="svg_29" transform="rotate(180 21 4)" width="16" x="21" y="4"/>
+   <rect fill="#25213F" height="1" id="svg_30" transform="rotate(180 19 17)" width="12" x="19" y="17"/>
+   <rect fill="#25213F" height="2" id="svg_31" transform="rotate(180 17 16)" width="8" x="17" y="16"/>
+  </symbol>
+  <symbol id="svg_26" viewBox="0 0 26 17" xmlns="http://www.w3.org/2000/svg">
+   <rect fill="white" height="13" id="svg_32" stroke="#25213F" width="25" x="0.5" y="3.5"/>
+   <rect fill="#25213F" height="1" id="svg_33" width="16" x="5" y="13"/>
+   <rect fill="#25213F" height="1" id="svg_34" width="12" x="7"/>
+   <rect fill="#25213F" height="2" id="svg_35" width="8" x="9" y="1"/>
+  </symbol>
+ </defs>
  <g class="level1layer layer">
   <title>Общий слой</title>
   <g id="walls">
@@ -31,12 +45,13 @@
    <rect class="level1st3" height="4" id="svg_25" width="31" x="26" y="358"/>
   </g>
   <g id="Layer_2" opacity="0.33"/>
-  <line fill="none" fill-opacity="0.01" id="svg_24" stroke="#C4C4C4" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-opacity="null" x1="226" x2="442" y1="154" y2="154"/>
  </g>
  <g class="layer" id="areas">
   <title>Зоны</title>
  </g>
  <g class="layer" id="workplaces">
   <title>Рабочие столы</title>
+  <use data-workplaceid="7788" id="svg_24" transform="matrix(4.64103 0 0 4.64103 0 0)" x="74" xlink:href="#svg_6" y="30"/>
+  <use id="svg_27" transform="matrix(4.64103 0 0 4.64103 0 0)" x="74" xlink:href="#svg_26" y="30"/>
  </g>
 </svg>
