@@ -83,6 +83,47 @@ const resolvers = {
             return null;
         },
     },
+    Floor: {
+        // @ts-ignore
+        city(parent) {
+            try {
+                if (parent.city) {
+                    // @ts-ignore
+                    return City.findById(parent.city, (err: CallbackError, city) => {
+
+                        if (!err) {
+                            return city;
+                        }
+
+                        throw err;
+                    });
+                }
+                return null;
+            } catch (error) {
+                
+            }
+        },
+        // @ts-ignore
+        address(parent) {
+            try {
+                if (parent.address) {
+                    // @ts-ignore
+                    return Address.findById(parent.address, (err: CallbackError, address) => {
+
+                        if (!err) {
+                            return address;
+                        }
+
+                        throw err;
+                    });
+                }
+
+                return null;
+            } catch (error) {
+                    
+            }
+        },
+    },
     Address: {
         // @ts-ignore
         city(parent) {
@@ -177,16 +218,32 @@ const resolvers = {
             throw err;
         }),     
         // @ts-ignore
-        moreFloors: async (_parent, {cursor, limit}: {cursor: string, limit: number}) => {
-            const res = await Level
-                .find({})                 // Whatever filter you want
-                .limit(limit)             // Use limit and other Query options as you normally would
-                .sort('fl')               // Use sort as you would normally do
-                // @ts-ignore
-                .paginate(cursor)         // startCursor optional
-                .exec();                  // Required
+        moreFloors: async (_parent, {cursor, limit, city, address}: {cursor: string, limit: number, city?: string, address?: string}) => {
+            try {
+                const params: {city?: string, address?: string} = {};
 
-            return res
+                if (city) {
+                    params.city = city;
+                }
+                
+                if (address) {
+                    params.address = address;
+                }
+
+                const res = await Level
+                    .find(params)                 // Whatever filter you want
+                    .limit(limit)             // Use limit and other Query options as you normally would
+                    .sort('fl')               // Use sort as you would normally do
+                    // @ts-ignore
+                    .paginate(cursor)         // startCursor optional
+                    .exec();                  // Required
+
+                console.log('res', res);
+                return res;
+            } catch (error) {
+                console.log('error', error);
+                return [];
+            }
         },
         // @ts-ignore
         floor: (_parent, args) => {
@@ -264,6 +321,29 @@ const resolvers = {
                 console.log(result);
 
                 return result;
+            } catch (error) {
+                
+            }
+        },
+        
+        // @ts-ignore
+        getAddressesByCity: async (_parent, args) => {
+            try {
+                if (!args.city) {
+                    return [];
+                }
+
+                const cityModel = await City.findById(args.city);
+
+                let city = null;
+    
+                if (cityModel) {
+                    city = cityModel._id;
+                }
+                
+                console.log('city', city);
+
+                return await Address.find({ city });
             } catch (error) {
                 
             }

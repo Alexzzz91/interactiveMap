@@ -204,6 +204,8 @@ async function startApolloServer() {
         }
       }
     ],
+    // introspection: process.env.NODE_ENV !== 'production'
+    introspection: true,
   });
 
   await server.start();
@@ -219,29 +221,34 @@ async function startApolloServer() {
 
   // app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
-  app.get('/404-1', (_req, res) => {
-    res.sendFile(`public/404-1.html`, { root: process.cwd() });
-  });
+  // app.get('/404-1', (_req, res) => {
+  //   res.sendFile(`public/404-1.html`, { root: process.cwd() });
+  // });
 
-  app.get('/404-2', (_req, res) => {
-    res.sendFile(`public/404-2.html`, { root: process.cwd() });
-  });
+  // app.get('/404-2', (_req, res) => {
+  //   res.sendFile(`public/404-2.html`, { root: process.cwd() });
+  // });
 
-  app.get('/404-3', (_req, res) => {
-    res.sendFile(`public/404-3.html`, { root: process.cwd() });
-  });
+  // app.get('/404-3', (_req, res) => {
+  //   res.sendFile(`public/404-3.html`, { root: process.cwd() });
+  // });
 
-  app.get('/404-4', (_req, res) => {
-    res.sendFile(`public/404-4.html`, { root: process.cwd() });
-  });
+  // app.get('/404-4', (_req, res) => {
+  //   res.sendFile(`public/404-4.html`, { root: process.cwd() });
+  // });
 
-  app.get('/404-5', (_req, res) => {
-    res.sendFile(`public/404-5.html`, { root: process.cwd() });
-  });
+  // app.get('/404-5', (_req, res) => {
+  //   res.sendFile(`public/404-5.html`, { root: process.cwd() });
+  // });
 
-  app.get('/404-best', (_req, res) => {
-    res.sendFile(`public/404-best.html`, { root: process.cwd() });
-  });
+  // app.get('/404-best', (_req, res) => {
+  //   res.sendFile(`public/404-best.html`, { root: process.cwd() });
+  // });
+
+  // app.get('*', (_req, res) => {
+  //   const fonFountVariant = Math.floor(Math.random() * 5) + 1;
+  //   res.sendFile(`public/404-${fonFountVariant}.html`, { root: process.cwd() });
+  // });
 
   app.get('*', (_req, res) => {
     const fonFountVariant = Math.floor(Math.random() * 5) + 1;

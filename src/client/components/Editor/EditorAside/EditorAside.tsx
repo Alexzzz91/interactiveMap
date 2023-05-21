@@ -17,6 +17,7 @@ type EditorAsideProps = {
 
 const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem }) => {
   const drawing = canvas.getCurrentDrawing();
+  const [source, setSource] = React.useState('');
 
   const handleSetCurrentLayer = React.useCallback((name) => {
     const currentDrawing = canvas.getCurrentDrawing();
@@ -37,9 +38,21 @@ const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem }) => {
     handleSetCurrentLayer(currentLayerName);
   }, []);
 
+  const handleClick = () => {
+    console.log('canvas', canvas.setSvgString(source))
+  }
+
+  const handleSetSource = (e) => {
+    setSource(e.target.value);
+  }
+
   return (
     <AsideStyled>
       <ListInnerStyled>
+        <textarea spellcheck="false" rows="5" cols="80" value={source} onChange={handleSetSource}></textarea>
+        <button onClick={handleClick} >
+          сохранить чего то там
+        </button>
         {!currentElem && (
           <SelectLayer 
             drawing={drawing}

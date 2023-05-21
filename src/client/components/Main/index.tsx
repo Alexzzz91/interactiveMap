@@ -5,11 +5,17 @@ import { useQuery } from '@apollo/react-hooks';
 import { moreFloorQuery, FloorsQueryData } from '../../gql/floorGql';
 import { Loading } from '../../../common/components/Loading';
 import { Error } from '../../../common/components/Error';
-import { addressQuery, AddressQueryData } from '../../gql/addressGql';
+import { ParamsContext } from '../app';
 
 const MainContainer: React.FC = (_props) => {
-  const { loading, error, data, fetchMore } = useQuery<FloorsQueryData>(moreFloorQuery, {
-    variables: { limit: 1 },
+  const { currentCity, currentAddress } = React.useContext(ParamsContext);
+
+  const { loading, error, data, fetchMore, refetch } = useQuery<FloorsQueryData>(moreFloorQuery, {
+    variables: { 
+      limit: 1,
+      city: currentCity,
+      address: currentAddress,
+    },
   });
 
   React.useEffect(() => {
@@ -18,10 +24,22 @@ const MainContainer: React.FC = (_props) => {
         variables: { 
           limit: 1,
           cursor: data?.moreFloors?.pageInfo?.nextCursor,
+          city: currentCity,
+          address: currentAddress,
         },
       });
     }
-  }, [loading, error, data, fetchMore]);
+  }, [loading, error, data, fetchMore, currentCity, currentAddress]);
+
+  React.useEffect(() => {
+    if (currentCity && currentAddress) {
+      refetch({
+        limit: 1,
+        city: currentCity,
+        address: currentAddress,
+      });
+    }
+  }, [refetch, currentCity, currentAddress]);
 
   if (loading || !data) {
     return (

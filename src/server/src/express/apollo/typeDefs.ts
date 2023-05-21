@@ -49,6 +49,7 @@ const typeDefs = gql`
     id: String!
     name: String!
     fl: Int!
+    city: City    
     address: Address
     levelSchema: String!
   }
@@ -166,6 +167,8 @@ const typeDefs = gql`
     moreFloors(
       cursor: String, 
       limit: Int,
+      city: String,
+      address: String,
     ): FlorsWithCursor
 
     floor(id: String!): Floor
@@ -187,6 +190,10 @@ const typeDefs = gql`
 
     address(id: String!): Address
     addresses: [Address]
+
+    getAddressesByCity(
+      city: String,
+    ): [Address]
   }
 
   type Mutation {

@@ -37,6 +37,12 @@ const Canvas = React.memo((props) => {
   const [canvasState, dispatchCanvasState] = React.useContext(canvasContext);
   let elem = canvasState.selectedElement;
 
+  // React.useEffect(() => {
+  //   if (canvasState.canvas) {
+  //     console.log('canvasState.canvas.getSvgString()', canvasState.canvas.getSvgString());
+  //   };
+  // }, [canvasState]);
+
   // log('Canvas', { locale, canvasState });
   const updateContextPanel = () => {
     let elem = canvasState.selectedElement;

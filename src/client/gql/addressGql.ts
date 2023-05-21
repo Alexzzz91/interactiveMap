@@ -14,6 +14,16 @@ const addressQuery = gql`
     }
 `;
 
+const getAddressesByCity = gql`
+  query GetAddressesByCity($city: String) {
+    getAddressesByCity( city: $city) {
+      id
+      name
+      textDescription
+    }
+  }
+`;
+
 const createAddress = gql`
   mutation CreateAddress(
     $name: String!, 
@@ -48,12 +58,18 @@ interface AddressQueryData {
     addresses: AddressData[];
 }
 
+interface GetAddressesByCityQueryData {
+    getAddressesByCity: AddressData[];
+}
+
 export {
     addressQuery,
     createAddress,
+    getAddressesByCity,
 };
 
 export type {
     AddressData,
     AddressQueryData,
+    GetAddressesByCityQueryData,
 };

@@ -36,12 +36,26 @@ type IParamsProps = {
   userId?: string;
 };
 
+type CurrentAppParamsType = {
+  currentCity: string;
+  setCurrentCity: (newCity: string) => void; 
+  currentAddress: string;
+  setCurrentAddress: (newAddress: string) => void; 
+}
+
+const defaultAppParams = {
+  currentCity: '',
+  setCurrentCity: (_newCity: string) => {}, 
+  currentAddress: '', 
+  setCurrentAddress: (_newAddress: string) => {},
+};
+
 const AuthContext = React.createContext<Auth | null>(null);
-const ParamsContext = React.createContext(null);
+const ParamsContext = React.createContext<CurrentAppParamsType>(defaultAppParams);
 
 const App = () => {
   const [currentCity, setCurrentCity] = useLocalStorage('currentCity', '');
-  const [currentAddress, setCurrentAddress] = useLocalStorage('canEdit', '');
+  const [currentAddress, setCurrentAddress] = useLocalStorage('currentAddress', '');
   const [auth, setAuth] = React.useState<Auth | null>(null);
 
   const currentParams = React.useMemo(() => {
@@ -116,4 +130,5 @@ export {
 export type {
   IParamsProps,
   MapToastOptions,
+  CurrentAppParamsType,
 }

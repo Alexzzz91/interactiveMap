@@ -511,35 +511,6 @@ const initialLevel = `<svg xmlns:oi="http://oimotion.optimistik.fr/namespace/svg
   <g id="svg_817"/>
  </g>
 </g>
-<g class="level5layer layer" id="posters">
- <title>Постеры</title>
- <defs>
-  <pattern height="1" id="level2pattern0" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/1.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern1" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/2.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern2" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/3.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern4" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/5.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern5" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/6.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern6" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_209" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/7.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern3" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_204" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/4.jpg"/>
-  </pattern>
-  <pattern height="1" id="level2pattern7" patternContentUnits="objectBoundingBox" width="1">
-   <image height="302" id="svg_209" transform="scale(0.004)" width="302" xlink:href="/img/posters/level2/8.jpg"/>
-  </pattern>
- </defs>
-</g>
 </svg>`;
 
 export {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Modal from 'react-modal';
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
 
 import { gql, useMutation, useQuery } from '@apollo/react-hooks';
 import { CityQueryData, cityQuery, createCity } from '../../../gql/cityGql';
@@ -37,13 +37,14 @@ const CityRowContainer: React.FC = (_props) => {
     fetchPolicy: 'network-only'
   });
   
-  const { currentCity, setCurrentCity } = React.useContext(ParamsContext);
+  const { currentCity, setCurrentCity, setCurrentAddress } = React.useContext(ParamsContext);
 
   const [city, setCity] = React.useState(currentCity);
  
   const handleSelectValue = React.useCallback((eventType: string) => {
     setCity(eventType);
     setCurrentCity(eventType);
+    setCurrentAddress('');
   }, [setCity, setCurrentCity]);
 
   // let subtitle;
@@ -100,7 +101,7 @@ const CityRowContainer: React.FC = (_props) => {
 
         closeModal();
 
-        toast.info(`Город успешно создан`, toastOptions);
+        toast.info(`Город успешно создан`, toastOptions as ToastOptions);
     } catch (error) {
         
     }

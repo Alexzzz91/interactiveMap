@@ -64,7 +64,7 @@ const Select: React.FC<Props> = (props) => {
             return ;
         }
 
-        const find =  items.find((item) => item.value === value);
+        const find = items.find((item) => item.value === value);
 
         return find?.title;
 
@@ -90,6 +90,7 @@ const Select: React.FC<Props> = (props) => {
                 > 
                     {!!value && title}
                     {!value && placeholder}
+                    {!value && !placeholder && 'Выберете'}
                 </SelectHeadStyled>
                 <UlListStyled isOpen={isOpen}>
                     {items.map(({ value, title }) => (

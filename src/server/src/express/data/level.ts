@@ -9,7 +9,6 @@ interface ILevel extends Document {
   paginate(cursor:string): Promise<void>;
 };
 
-
 const levelSchema: Schema = new mongoose.Schema({
   name: {
     type: String,
@@ -23,6 +22,10 @@ const levelSchema: Schema = new mongoose.Schema({
   levelSchema: {
     type: String,
     required: true,
+  },
+  city: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'City'
   },
   address: {
     type: mongoose.Schema.Types.ObjectId,

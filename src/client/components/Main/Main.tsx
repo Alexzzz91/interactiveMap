@@ -31,7 +31,7 @@ type MainProps = {
     floors: FloorData[]
 };
 
-const Main: React.FC<MainProps>  = ({ floors, address }) => {
+const Main: React.FC<MainProps>  = ({ floors }) => {
   const { pathname, search } = useLocation();
   const { canEdit } = parseQuery(search);
 

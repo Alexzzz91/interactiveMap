@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Modal from 'react-modal';
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
 
 import { gql, useMutation, useQuery } from '@apollo/react-hooks';
-import { addressQuery, AddressQueryData, createAddress } from '../../../gql/addressGql';
+import { createAddress, getAddressesByCity, GetAddressesByCityQueryData } from '../../../gql/addressGql';
 import { Input } from '../../../../common/components/input/Input';
 import { CityQueryData, cityQuery } from '../../../gql/cityGql';
 import { toastOptions, ParamsContext } from '../../app';
@@ -34,12 +34,20 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 const AddressRowContainer: React.FC = (_props) => {
-  const { data: addressData } = useQuery<AddressQueryData>(addressQuery, {
-    fetchPolicy: 'network-only'
-  });
   const { data: citiesData } = useQuery<CityQueryData>(cityQuery);
 
-  const { currentAddress, setCurrentAddress } = React.useContext(ParamsContext);
+  const { currentAddress, setCurrentAddress, currentCity } = React.useContext(ParamsContext);
+
+  const { data: addressData, refetch } = useQuery<GetAddressesByCityQueryData>(getAddressesByCity, {
+    variables: { 
+      city: currentCity,
+    },
+    fetchPolicy: 'network-only',
+  });
+
+  React.useEffect(() => {
+    refetch({ city: currentCity });
+  }, [currentCity]);
 
   const [address, setAddress] = React.useState(currentAddress);
 
@@ -74,7 +82,7 @@ const AddressRowContainer: React.FC = (_props) => {
     update(cache, { data: { createAddress } }) {
       cache.modify({
         fields: {
-          addresses(existingAddresses = []) {
+          getAddressesByCity(existingAddresses = []) {
             const newAddressesRef = cache.writeFragment({
               data: createAddress,
               fragment: gql`
@@ -105,7 +113,7 @@ const AddressRowContainer: React.FC = (_props) => {
         
         closeModal();
         
-        toast.info(`Адрес успешно создан`, toastOptions);
+        toast.info(`Адрес успешно создан`, toastOptions as ToastOptions);
     } catch (error) {
         
     }
@@ -137,21 +145,21 @@ const AddressRowContainer: React.FC = (_props) => {
 
   return (
     <>
-        {!addressData?.addresses.length && !addressData?.addresses[0] && (
+        {!addressData?.getAddressesByCity.length && !addressData?.getAddressesByCity[0] && (
           <>
             <NoAddressMesageStyled>
                 Нет адреса, <NoAddressMesageLinkStyled onClick={openModal}> Добавить адрес? </NoAddressMesageLinkStyled>
             </NoAddressMesageStyled>
           </>
         )}
-        {!!addressData?.addresses.length && (
+        {!!addressData?.getAddressesByCity.length && (
           <>
             <AddressSelectStyled
                 value={address}
                 onChange={handleSelectValue}
                 name='address'
                 placeholder='Выберите Адрес'
-                items={addressData?.addresses.map((address) => ({title: address.name, value: address.id}))}
+                items={addressData?.getAddressesByCity.map((address) => ({title: address.name, value: address.id}))}
             />
             <NoAddressMesageLinkStyled onClick={openModal}> Добавить адрес? </NoAddressMesageLinkStyled>
           </>

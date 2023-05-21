@@ -12,8 +12,8 @@ const floorQuery = gql`
 `;
 
 const moreFloorQuery = gql`
-  query MoreFloors($cursor: String, $limit: Int!) {
-    moreFloors(cursor: $cursor, limit: $limit) {
+  query MoreFloors($cursor: String, $limit: Int!, $city: String, $address: String) {
+    moreFloors(cursor: $cursor, limit: $limit, city: $city, address: $address) {
       results {
         id
         name

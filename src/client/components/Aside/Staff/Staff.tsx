@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { GroupedVirtuoso } from 'react-virtuoso';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
 import * as React from 'react';
 import { 
     ContainerStyled,
@@ -160,8 +160,7 @@ const Staff = (_props) => {
             return;
         }
 
-        // @ts-ignore
-        toast(departments.join(', '), toastOptions);
+        toast(departments.join(', '), toastOptions as ToastOptions);
 
         const indexes = groupCounts
         .reduce(

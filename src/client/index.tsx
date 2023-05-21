@@ -9,8 +9,8 @@ import {
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { createUploadLink } from 'apollo-upload-client';
-import { initializeApp, getApps } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { initializeApp, getApps } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist';
 
 import { ThemeProvider } from 'styled-components';
@@ -98,16 +98,16 @@ const Root = () => {
     }
     getClient();
     // Initialize Firebase
-    const apps = getApps();
-    let app;
+    // const apps = getApps();
+    // let app;
 
-    if (!apps.length) {
-      app = initializeApp(firebaseConfig);
-    } else {
-      app = apps[0];
-    }
+    // if (!apps.length) {
+    //   app = initializeApp(firebaseConfig);
+    // } else {
+    //   app = apps[0];
+    // }
 
-    getAnalytics(app);
+    // getAnalytics(app);
   }, []);
 
   React.useEffect(() => {

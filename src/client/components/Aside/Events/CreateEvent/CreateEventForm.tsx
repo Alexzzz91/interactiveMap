@@ -11,7 +11,7 @@ import { Select } from '../../../../../common/components/input/Select';
 import { AuthContext, IParamsProps, toastOptions } from '../../../app';
 import { eventsName } from '../../../../../common/commonValues';
 import { Auth } from '../../../../../common/auth/auth.h';
-import { toast } from 'react-toastify';
+import { toast, ToastOptions } from 'react-toastify';
 
 type NewEvent = Partial<Omit<EventData, 'mapid'> & {mapid?: string}> ;
 
@@ -39,8 +39,7 @@ function CreateEventForm({ changeEditMode }: { changeEditMode(status: boolean): 
 
             changeEditMode(false);
 
-            // @ts-ignore
-            toast.info(`Событие успешно создано`, toastOptions);
+            toast.info(`Событие успешно создано`, toastOptions as ToastOptions);
         } catch (error) {
             
         }

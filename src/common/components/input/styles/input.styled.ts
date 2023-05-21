@@ -99,6 +99,8 @@ const SelectStyled = styled.div`
     padding: 10px 12px;
     padding-right: 28px;
     width: 100%;
+    min-width: 150px;
+    min-height: 42px;
     margin-bottom: 8px;
     border: 1px solid transparent;
     background: ${({theme}) => theme.color.sofia};
@@ -121,6 +123,8 @@ const SelectHeadStyled = styled.div<SelectHeadProps>`
     line-height: 20px;
     letter-spacing: 0px;
     text-align: left;
+    min-width: 150px;
+    min-height: 20px;
     color: ${({theme}) => theme.color.london};
     cursor: pointer;
 
