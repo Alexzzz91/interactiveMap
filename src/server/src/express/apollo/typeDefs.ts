@@ -172,7 +172,7 @@ const typeDefs = gql`
     ): FlorsWithCursor
 
     floor(id: String!): Floor
-    floorByIndex(index: String!): Floor
+    floorByIndex(index: String!, city: String, address: String): Floor
 
     places: [Place]
     place(id: String!): Place
@@ -255,6 +255,8 @@ const typeDefs = gql`
       index: String!,
       name: String,
       levelSchema: String!,
+      city: String,
+      address: String
     ): Floor
 
     updateOrCreatePlace(

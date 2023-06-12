@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as React from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { Canvas } from './Canvas/Canvas';
 import { updateLevelSchema } from '../../gql/floorGql';
@@ -18,9 +18,15 @@ const config = {
   debugPrefix: 'editor',
 };
 
-const Editor = ({ initialSvgContent }) => {
+type EditorProps = {
+  initialSvgContent: string;
+  currentCity?: string;
+  currentAddress?: string;
+}
+
+const Editor: React.FC<EditorProps> = ({ initialSvgContent, currentCity, currentAddress }) => {
   const { pathname } = useLocation();
-  const history = useHistory();
+  const history = useNavigate();
   const { floorIndex } = useParams<IParamsProps>();
   const [svgContent, setSvgContent] = React.useState(initialSvgContent);
   const [updateLevelSchemaMut] = useMutation(updateLevelSchema);
@@ -28,6 +34,8 @@ const Editor = ({ initialSvgContent }) => {
   const svgUpdate = React.useCallback((svgContent) => {
     const newSvgContent = svgContent;
     
+    console.log('1111 svgContent', svgContent);
+
     setSvgContent(newSvgContent);
 
     if (config.saveHandler !== null) {
@@ -39,23 +47,25 @@ const Editor = ({ initialSvgContent }) => {
         name: 'Новая схема офиса',
         index: floorIndex || '1',
         levelSchema: newSvgContent,
+        city: currentCity,
+        address: currentAddress,
       }
     });
 
-  }, [setSvgContent, updateLevelSchemaMut, floorIndex]);
+  }, [setSvgContent, updateLevelSchemaMut, floorIndex, currentCity, currentAddress]);
 
-  // React.useEffect(() => {
-  //   console.log('svgContent', svgContent);
-  // }, [svgContent]);
+  React.useEffect(() => {
+    console.log('svgContent', svgContent);
+  }, [svgContent]);
 
   const onClose = React.useCallback((e) => {
     if (pathname.includes(editorAddRoute)) {
-      history.push('/');
+      history('/');
 
       return;
     }
 
-    history.push(pathname.replace('/editor', ''));
+    history(pathname.replace('/editor', ''));
   }, [history, pathname]);
 
   const logDebugData = React.useCallback((e) => {
@@ -65,6 +75,7 @@ const Editor = ({ initialSvgContent }) => {
   return (
     <ErrorBoundary>
       <Canvas
+        setSvgContent={setSvgContent}
         svgContent={svgContent}
         locale={config.i18n}
         svgUpdate={svgUpdate}

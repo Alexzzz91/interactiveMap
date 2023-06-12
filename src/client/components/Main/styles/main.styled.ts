@@ -39,15 +39,18 @@ type LevelsStyledProps = {
 };
 
 const LevelsStyled = styled.div<LevelsStyledProps>`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: ${({ floor }) => floor ? 100 : 80 }vmin;
-    height: ${({ floor }) => floor ? 35 : 40 }vmin;
-    margin: ${({ floor }) => floor ? '-30vmin 0 0 -50vmin ' : '-25vmin 0 0 -35vmin ' };
-    transition: transform 0.3s;
-    transform-style: preserve-3d;
-    transform: rotateX(70deg) rotateZ(-45deg) translateZ(-27vmin);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // width: ${({ floor }) => floor ? 100 : 80 }vmin;
+    // height: ${({ floor }) => floor ? 35 : 40 }vmin;
+    // margin: ${({ floor }) => floor ? '-30vmin 0 0 -50vmin ' : '-25vmin 0 0 -35vmin ' };
+    // transition: transform 0.3s;
+    // transform-style: preserve-3d;
+    // transform: rotateX(70deg) rotateZ(-45deg) translateZ(-27vmin);
+
+    height: 100%;
+    overflow: auto;
     
     ${({ floor }) => {
         if (floor) {
@@ -74,6 +77,7 @@ const TopRightBarStyled = styled.div`
     justify-content: center;
     align-items: center;
     gap: 30px;
+    z-index: 9999;
 `;
 
 const GoToEditorLinkStyled = styled.div`

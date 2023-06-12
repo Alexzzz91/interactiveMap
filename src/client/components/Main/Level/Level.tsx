@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IParamsProps } from '../../app';
 import { searchStaffByFloor } from '../../../IndexedDB/staff/searchStaff';
 import { searchPlacesByFloor } from '../../../IndexedDB/places/searchPlaces';
@@ -31,7 +31,10 @@ const Level = (props: Props) => {
 
   const { idPlace, idWorkplace, idPoster } = useParams<IParamsProps>();
 
-  const history = useHistory();
+  console.log('idPlace', idPlace);
+  console.log('idWorkplace', idWorkplace);
+  console.log('idPoster', idPoster);
+  const history = useNavigate();
 
   const levelRef = React.useRef();
   const svgRef = React.useRef();
@@ -40,6 +43,8 @@ const Level = (props: Props) => {
   const [currentLevel, setCurrentLevel] = React.useState(activeLevel);
   const [workplacesIsTaken, setWorkplacesIsTaken] = React.useState(defaultArray);
   const [unavailablePlaces, setUnavailablePlaces] = React.useState(defaultArray);
+
+  console.log('activeLevel', activeLevel);
 
   React.useEffect(() => {
     if (level !== currentLevel) {
@@ -51,6 +56,7 @@ const Level = (props: Props) => {
       const filteredStaff = staff.filter((re) => !!re.workplaceid) as UserDataWithWorkplaceId[];
       const workplacesIds = filteredStaff.map((re) => re.workplaceid);
 
+      console.log('level', level);
       const places = await searchPlacesByFloor({ level });
       const unavailablePlaceIds = places
         .filter((place) => place.type === placesType.Unavailable)
@@ -81,7 +87,7 @@ const Level = (props: Props) => {
     const { mapid, posterid } = target.dataset;
     
     if (mapid) {
-      history.push(`/fl${level}place${mapid}`);
+      history(`/?fl=${level}&place=${mapid}`);
     }
     
     if (!mapid) {
@@ -93,11 +99,11 @@ const Level = (props: Props) => {
     }
 
     if (workplaceid) {
-      history.push(`/fl${level}wp${workplaceid}`);
+      history(`/?fl=${level}&wp=${workplaceid}`);
     }
 
     if (posterid) {
-      history.push(`/fl${level}poster${posterid}`);
+      history(`/?fl=${level}&poster=${posterid}`);
     }
   }, []);
 
@@ -126,6 +132,14 @@ const Level = (props: Props) => {
     setTooltipContent('');
   }, [setTooltipContent]);
 
+  React.useEffect(() => {
+    if (svgRef.current) {
+      console.log('svgRef.current', svgRef.current);
+    }
+  },[svgRef]);
+
+  // console.log('svg', svg);
+
   const svgComponent = (
     <LevelStyled
       // @ts-ignore
@@ -133,8 +147,8 @@ const Level = (props: Props) => {
       svg={svg}
         // @ts-ignore
       onClick={handleOnClick}
-      width="100%"
-      height="100%"
+      // width="100%"
+      // height="100%"
     />
   );
 
@@ -172,8 +186,8 @@ const Level = (props: Props) => {
   return (
     <LevelLink
       {...oweralyProps}
-      to={`/fl${level}`}
-          // @ts-ignore
+      to={`/?fl=${level}`}
+      // @ts-ignore
       ref={levelRef}
     >
       {svgComponent}

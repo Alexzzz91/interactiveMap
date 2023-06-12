@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { ToastOptions, ToastPosition } from 'react-toastify';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Link, Route, Routes, useSearchParams } from "react-router-dom";
 import { MainContainer } from './Main';
 import { Aside } from './Aside/Aside';
 import { AsideContainer } from './Aside/AsideContainer';
-import { administrationRoute, allEditorRoutes, allRoutes } from '../../common/routerPaths';
+import { administrationRoute, editorRoutes, allRoutes } from '../../common/routerPaths';
 import { ContainerStyled } from './styles/app.styled';
 import { EditorContainer } from './Editor';
 import { useLocalStorage } from '../../common/hooks/useLocalStorage';
@@ -56,7 +56,16 @@ const ParamsContext = React.createContext<CurrentAppParamsType>(defaultAppParams
 const App = () => {
   const [currentCity, setCurrentCity] = useLocalStorage('currentCity', '');
   const [currentAddress, setCurrentAddress] = useLocalStorage('currentAddress', '');
-  const [auth, setAuth] = React.useState<Auth | null>(null);
+  const [auth, setAuth] = React.useState<Auth | null>({
+    name: 'admin',
+    preferred_username: 'admin',
+    given_name: 'admin',
+    family_name: 'admin',
+    email: 'admin@admin.admin',
+    realm_access: {
+      roles: ['admin'],
+    },
+  });
 
   const currentParams = React.useMemo(() => {
     return {
@@ -85,32 +94,28 @@ const App = () => {
     <AuthContext.Provider value={auth}>
       <ParamsContext.Provider value={currentParams}>
         <ContainerStyled>
-          <Router>
+          <Routes>
             <Route
               path={administrationRoute}
-              exact={true}
-            >
-              <AdminPage />
-            </Route>
+              element={ <AdminPage /> }
+            />
             <Route
-              path={allEditorRoutes}
-              exact={true}
-            >
-              <EditorContainer />
-            </Route>
+              path={editorRoutes}
+              element={ <EditorContainer /> }
+            />
 
             <Route 
-              path={allRoutes}
-              exact={true}
-            >
-              <>
-                <MainContainer />
-                <AsideContainer> 
-                  <Aside />
-                </AsideContainer>
-              </>
-            </Route>
-          </Router>
+              path='*'
+              element={(
+                <>
+                  <MainContainer />
+                  <AsideContainer> 
+                    <Aside />
+                  </AsideContainer>
+                </>
+              )}
+            />
+          </Routes>
         </ContainerStyled>
       </ParamsContext.Provider>
     </AuthContext.Provider>

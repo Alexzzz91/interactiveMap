@@ -37,9 +37,10 @@ a {
 	color: #aaa;
 	outline: none;
 }
-svg{
+
+/* svg{
 	fill: white;
-}
+} */
 
  
 svg .meetingRoom{ 

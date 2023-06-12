@@ -256,14 +256,36 @@ const resolvers = {
             });
         },
         // @ts-ignore
-        floorByIndex: (_parent, args) => {
-            // @ts-ignore
-            return Level.findOne({fl: Number(args.index)}, (err: CallbackError, floor) => {
-                if (!err) {
-                    return floor;
+        floorByIndex: async (_parent, { index, city, address }: { index: string, city?: string, address?: string}) => {
+            const params: { fl:number; city?: string, address?: string } = { fl: Number(index || 0) };
+
+            if (city) {
+                params.city = city;
+            }
+            
+            if (address) {
+                params.address = address;
+            }
+
+            try {
+                const params: {city?: string, address?: string} = {};
+
+                if (city) {
+                    params.city = city;
                 }
-                throw err;
-            });
+                
+                if (address) {
+                    params.address = address;
+                }
+
+                const res = await Level.findOne(params);
+
+                console.log('res', res);
+                return res;
+            } catch (error) {
+                console.log('error', error);
+                return error;
+            }
         },
         places: () => Place.find({}, (err: CallbackError, placesRes) => {
             if (!err) {
@@ -612,7 +634,7 @@ const resolvers = {
             });
         },
         // @ts-ignore
-        updateLevelSchema: async (_root, {index, name, levelSchema}) => {
+        updateLevelSchema: async (_root, { index, levelSchema, city, address, ...rest }) => {
             try {
                 fs.writeFileSync(
                     path.resolve(__dirname, `../../../../../../../assets/img/levels/level${index}.svg`),
@@ -622,11 +644,32 @@ const resolvers = {
                 throw error;
             }
 
+            console.log('city', city);
+            console.log('address', address);
+
             const levelModel = await Level.find({fl: index});
+            const cityModel = await City.findById(city);
+
+            let cityID = null;
+
+            if (cityModel) {
+                cityID = cityModel._id;
+            }
+            
+            const addressModel = await Address.findById(address);
+
+            let addressID = null;
+
+            if (addressModel) {
+                addressID = addressModel._id;
+            }
+
+            console.log('cityID', cityID);
+            console.log('addressID', addressID);
 
             if (levelModel.length) {
                 // @ts-ignore
-                return Level.findOneAndUpdate({fl: index}, {levelSchema, name}, (err: CallbackError, floor) => {
+                return Level.findOneAndUpdate({fl: index}, { levelSchema, city: cityID, address: addressID, ...rest }, (err: CallbackError, floor) => {
                     if (!err) {
                         return floor;
                     }
@@ -636,7 +679,7 @@ const resolvers = {
             } else {
                 try {
                     // @ts-ignore
-                    const floor = await Level.create({fl: index, levelSchema, name});
+                    const floor = await Level.create({fl: index, levelSchema, city: cityID, address: addressID, ...rest});
                     return floor;
                 } catch (error) {
                     throw error;

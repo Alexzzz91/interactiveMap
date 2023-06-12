@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { 
     ContainerStyled,
@@ -33,7 +33,7 @@ const Person: React.FC<IPersonProps> = (props) => {
 
     const { avatar } = person;
 
-    const history = useHistory();
+    const history = useNavigate();
 
     const [avatarSrc, setAvatarSrc] = React.useState(avatar);
 

@@ -1,16 +1,15 @@
 // @ts-nocheck
 import * as React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 
 import { floorByIndexQuery, FloorByIndexQueryData } from '../../gql/floorGql';
 import { Loading } from '../../../common/components/Loading';
-import { IParamsProps } from '../app';
+import { IParamsProps, ParamsContext } from '../app';
 import { UploadFile } from './UploadFile';
 import { editorAddRoute } from '../../../common/routerPaths';
 import { initialLevel } from './initialLevel';
-import { CityAdressRow } from '../common/CityAdressRow';
-
+import { CityAddressRow } from '../common/CityAddressRow';
 
 const Editor = React.lazy(() => import('./Editor'));
 
@@ -22,14 +21,34 @@ const defaultLayersName = {
 };
 
 const EditorContainer: React.FC = () => {
+  const { currentCity, currentAddress } = React.useContext(ParamsContext);
   const location = useLocation();
-  const { floorIndex } = useParams<IParamsProps>();
+  // const { floorIndex } = useParams<IParamsProps>();
+  const [searchParams] = useSearchParams();
+  const floorIndex = searchParams.get("fl"); // is the string "Jonathan Smith".
 
-  const { loading, error, data } = useQuery<FloorByIndexQueryData>(floorByIndexQuery, {
+  console.log('floorIndex', floorIndex)
+  console.log('Number(floorIndex)', Number(floorIndex))
+
+  const { loading, error, data, refetch } = useQuery<FloorByIndexQueryData>(floorByIndexQuery, {
     variables: { 
-      index: floorIndex || '1' 
+      index: floorIndex || '1',
+      city: currentCity,
+      address: currentAddress,
     }
   });
+
+  React.useEffect(() => {
+    if (currentCity && currentAddress) {
+      refetch({
+        index: floorIndex || '1',
+        city: currentCity,
+        address: currentAddress,
+      });
+    }
+  }, [refetch, currentCity, currentAddress, floorIndex]);
+
+  console.log('error', error);
 
   if (loading) {
     return (
@@ -41,7 +60,6 @@ const EditorContainer: React.FC = () => {
     return <p>Error :(</p>
   };
 
-  
   // @ts-ignore
   const { floorByIndex } = data;
 
@@ -51,8 +69,12 @@ const EditorContainer: React.FC = () => {
 
   return (
     <React.Suspense fallback={<Loading />}>
-      <CityAdressRow />
-      <Editor initialSvgContent={floorByIndex?.levelSchema || initialLevel} />
+      <CityAddressRow />
+      <Editor 
+        initialSvgContent={floorByIndex?.levelSchema || initialLevel} 
+        currentCity={currentCity}
+        currentAddress={currentAddress}
+      />
     </React.Suspense>
   );
 };

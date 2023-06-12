@@ -26,6 +26,7 @@ const Canvas = React.memo((props) => {
     // locale,
     svgUpdate,
     onClose,
+    setSvgContent,
     log,
   } = props;
 
@@ -37,11 +38,11 @@ const Canvas = React.memo((props) => {
   const [canvasState, dispatchCanvasState] = React.useContext(canvasContext);
   let elem = canvasState.selectedElement;
 
-  // React.useEffect(() => {
-  //   if (canvasState.canvas) {
-  //     console.log('canvasState.canvas.getSvgString()', canvasState.canvas.getSvgString());
-  //   };
-  // }, [canvasState]);
+  React.useEffect(() => {
+    if (canvasState.canvas) {
+      console.log('canvasState.canvas.getSvgString()', canvasState.canvas.getSvgString());
+    };
+  }, [canvasState]);
 
   // log('Canvas', { locale, canvasState });
   const updateContextPanel = () => {
@@ -92,7 +93,7 @@ const Canvas = React.memo((props) => {
   const svgUpdateHandler = (svgString) => {
     const { canvas } = canvasState;
 
-    oiAttributes.current = `viewBox="0 0 ${canvas.contentW} ${canvas.contentH}"`;
+    // oiAttributes.current = `viewBox="0 0 ${canvas.contentW} ${canvas.contentH}"`;
     svgUpdate(restoreOIAttr(svgString, oiAttributes.current));
 
     dispatchCanvasState({ type: 'updated', updated: false })
@@ -196,6 +197,8 @@ const Canvas = React.memo((props) => {
     elem = null
   }
 
+  console.log('setSvgContent', setSvgContent);
+
   return (
     <>
       <EditorContainerStyled  withAside={true}>
@@ -228,6 +231,7 @@ const Canvas = React.memo((props) => {
         <AsideContainer >
           <EditorAside
             canvas={canvasState.canvas}
+            setSvgContent={setSvgContent}
             currentElem={elem}
           />
         </AsideContainer>

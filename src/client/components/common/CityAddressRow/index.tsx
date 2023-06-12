@@ -4,9 +4,9 @@ import * as React from 'react';
 import { AddressRowContainer } from '../AddressSelect';
 import { CityRowContainer } from '../CitySelect';
 
-import { RowStyled } from './styles/cityAdressRow.styled';
+import { RowStyled } from './styles/cityAddressRow.styled';
 
-const CityAdressRow: React.FC = () => {
+const CityAddressRow: React.FC = () => {
   return (
       <RowStyled>
         <CityRowContainer />
@@ -15,4 +15,4 @@ const CityAdressRow: React.FC = () => {
   );
 };
 
-export { CityAdressRow };
+export { CityAddressRow };

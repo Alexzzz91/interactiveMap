@@ -29,17 +29,16 @@ const moreFloorQuery = gql`
 `;
 
 const floorByIndexQuery = gql`
-  query FloorByIndex($index: String!) {
-    floorByIndex(index: $index) {
+  query FloorByIndex($index: String!, $city: String, $address: String) {
+    floorByIndex(index: $index, city: $city, address: $address) {
       levelSchema
     }
   }
 `;
 
-
 const updateLevelSchema = gql`
-  mutation updateLevelSchema($index: String!, $levelSchema: String!, $name: String) {
-    updateLevelSchema(index: $index, levelSchema: $levelSchema, name: $name) {
+  mutation UpdateLevelSchema($index: String!, $levelSchema: String!, $name: String, $city: String, $address: String) {
+    updateLevelSchema(index: $index, levelSchema: $levelSchema, name: $name, city: $city, address: $address) {
       id
       name
       fl

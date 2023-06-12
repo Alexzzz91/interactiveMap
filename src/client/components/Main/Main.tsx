@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 import { Level } from './Level/Level';
 import { BackButton } from './BackButton/BackButton';
@@ -25,14 +25,17 @@ import {
   PlanTopRowStyled,
   NoFloorsMesageStyled,
 } from './styles/main.styled';
-import { CityAdressRow } from '../common/CityAdressRow';
+import { CityAddressRow } from '../common/CityAddressRow';
 
 type MainProps = {
     floors: FloorData[]
+    currentCity?: string;
+    currentAddress?: string;
 };
 
-const Main: React.FC<MainProps>  = ({ floors }) => {
+const Main: React.FC<MainProps>  = ({ floors, currentCity, currentAddress }) => {
   const { pathname, search } = useLocation();
+  const [searchParams] = useSearchParams();
   const { canEdit } = parseQuery(search);
 
   // @ts-ignore
@@ -48,11 +51,19 @@ const Main: React.FC<MainProps>  = ({ floors }) => {
   }, [canEdit, setForceShowEditButton]);
 
   const { 
-    floorIndex,
+    // floorIndex,
     idPlace,
     idWorkplace,
     idPoster,
   } = useParams<IParamsProps>();
+
+  console.log('search', search)
+  console.log('searchParams', searchParams)
+  const floorIndex = searchParams.get("fl"); // is the string "Jonathan Smith".
+
+  console.log('floorIndex', floorIndex)
+  console.log('Number(floorIndex)', Number(floorIndex))
+
   const isMobile = useMobileDetector(MobileContext);
 
   return (
@@ -61,13 +72,13 @@ const Main: React.FC<MainProps>  = ({ floors }) => {
           <MallStyled>
             <PlanTopRowStyled>
 
-              <CityAdressRow />
+              <CityAddressRow />
 
               {!!floorIndex && (
                 <BackButton floorIndex={floorIndex} />
               )}
               {!!floorIndex && (idPlace || idWorkplace || idPoster) && (
-                <ClearPlacesStyled to={`/fl${floorIndex}`} >
+                <ClearPlacesStyled to={`/?fl=${floorIndex}`} >
                   Снять выделение
                 </ClearPlacesStyled>
               )}
@@ -99,7 +110,7 @@ const Main: React.FC<MainProps>  = ({ floors }) => {
                 ))}
               </LevelsStyled>
             )}
-            {!floors.length && (
+            {!floors.length && !!currentCity && !!currentAddress &&(
               <NoFloorsMesageStyled>
                 У вас нет планов этажей &nbsp;
                 <GoToEditorLinkStyled
@@ -109,6 +120,11 @@ const Main: React.FC<MainProps>  = ({ floors }) => {
                 >
                   &nbsp; Добавить этаж?
                 </GoToEditorLinkStyled>
+              </NoFloorsMesageStyled>
+            )}
+            {!floors.length && (!currentCity || !currentAddress) &&(
+              <NoFloorsMesageStyled>
+                Выберите город и адрес
               </NoFloorsMesageStyled>
             )}
           </MallStyled>

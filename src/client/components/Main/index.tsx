@@ -58,6 +58,8 @@ const MainContainer: React.FC = (_props) => {
   return (
     <Main 
       floors={moreFloors?.results ?? []} 
+      currentCity={currentCity}
+      currentAddress={currentAddress}
     />
   );
 };

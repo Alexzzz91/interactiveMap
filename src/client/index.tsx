@@ -32,6 +32,7 @@ import { cache } from './InMemoryCache';
 import { ToastContainerStyled } from './styles/toast.styles';
 import { toast } from 'react-toastify';
 import { firebaseConfig } from '../common/config/env';
+import { BrowserRouter } from 'react-router-dom';
 import { useClearAll } from '../common/utils/clearAll';
 import { CacheBehaviour } from '../common/utils/CacheBehaviour';
 import { ThemeChanger } from './components/ThemeChanger';
@@ -211,7 +212,9 @@ const Root = () => {
       <ThemeProvider theme={themes[currentTheme]}>
         <ApolloProvider client={client}>
           <GlobalStyle />
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
           <ToastContainerStyled />
           <ThemeChanger currentTheme={currentTheme} setCurrentTheme={setCurrentTheme} />
         </ApolloProvider>

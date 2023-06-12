@@ -19,6 +19,7 @@ const allRoutes = [
   '/',
 ];
 
+const editorRoutes = '/editor/*';
 const allEditorRoutes = allRoutes.map((route) => `/editor${route}`);
 
 const editorAddRoute = '/editor/add'; 
@@ -34,6 +35,7 @@ export {
   placePath, 
   workplacePath, 
   allRoutes,
+  editorRoutes,
   allEditorRoutes,
   editorAddRoute,
   administrationRoute,

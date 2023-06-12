@@ -67,9 +67,10 @@ type LevelProps = {
 }
 
 const setLevel = ({ level }: LevelProps) => {
-    return `
-        transform: translateZ(${(level - 1) * 10}vmin);
-    `;
+    return ``;
+    // return `
+    //     transform: translateZ(${(level - 1) * 10}vmin);
+    // `;
 };
 
 type CurrentLevelProps = {
@@ -127,6 +128,7 @@ const LevelDiv = styled.div<LevelDivProps>`
         border: 5px;
         border-style: solid;
         border-color: transparent;
+        fill: black;
 
         *[data-mapid]:hover {
             fill: rgb(94 75 212 / 80%);
@@ -230,36 +232,36 @@ function unavailablePlaces({ unavailablePlaces = [] }: LevelDivProps) {
 }
 
 const LevelLink = styled(Link)<LevelDivProps>`
-    width: 100%;
-    height: 100%;
+    width: 10%;
+    height: 10%;
     cursor: pointer;
     pointer-events: auto;
-    transition: opacity .5s, transform .4s;
-    transition-timing-function: cubic-bezier(0, 0, 1, -0.15);
-    transform-style: preserve-3d;
-    position: absolute;
-    background: ${({ theme }) => (theme.color.sofia)};
+    // transition: opacity .5s, transform .4s;
+    // transition-timing-function: cubic-bezier(0, 0, 1, -0.15);
+    // transform-style: preserve-3d;
+    // position: absolute;
 
     &:not(:first-child) {
         top: 0;
         left: 0;
     }
     
-    &:after {
-        content: attr(level);
-        left: 50px;
-        top: -50px;
-        position: absolute;
-        color: black;
-        font-size: 20px;
-        transform: rotateX(269deg) rotateY(320deg);
-    }
+    // &:after {
+    //     content: attr(level);
+    //     left: 50px;
+    //     top: -50px;
+    //     position: absolute;
+    //     color: black;
+    //     font-size: 20px;
+    //     transform: rotateX(269deg) rotateY(320deg);
+    // }
 
     svg {
         transition: .4s;
         border: 5px;
         border-style: solid;
         border-color: transparent;
+        fill: black;
     }
 
     &:hover {

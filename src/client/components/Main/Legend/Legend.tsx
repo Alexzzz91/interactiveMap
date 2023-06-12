@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import * as Icons from '../../../../common/components/icons/legendIcons';
 import { IParamsProps } from '../../app';
 import { searchPlacesByFloor } from '../../../IndexedDB/places/searchPlaces';
@@ -71,7 +71,12 @@ const commonIcons = [
 const tablesMap = ['Table1', 'Table2', 'Table3', 'Table4'];
 
 const Legend = () => {
-  const { floorIndex } = useParams<IParamsProps>();
+  const [searchParams] = useSearchParams();
+  const floorIndex = searchParams.get("fl"); // is the string "Jonathan Smith".
+
+  console.log('floorIndex', floorIndex)
+  console.log('Number(floorIndex)', Number(floorIndex))
+  // const { floorIndex } = useParams<IParamsProps>();
   const [iconArray, setIconArray] = React.useState<string[]>([]);
 
   React.useEffect(() => {

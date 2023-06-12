@@ -1,11 +1,11 @@
-import * as parser from 'fast-xml-parser';
+// import * as parser from 'fast-xml-parser';
 import fs from 'fs';
 import path from 'path';
 import { models } from '../mongo';
-import { IDepartment } from '../department';
-import {
-    places,
-} from "./places";
+// import { IDepartment } from '../department';
+// import {
+//     places,
+// } from "./places";
 
 // type IUser = {
 //     user_name: string;
@@ -20,185 +20,185 @@ import {
 //     vacation_dates?: string;
 // };
 
-type IPlace = {
-    name: string,
-    type: string,
-    fl: number,
-    pl: number,
-    capacity: number,
-    hasTv: boolean,
-    hasWindowsPc: boolean,
-    hasTable: boolean,
-    hasAppleTv: boolean,
-    hasBorad: boolean,
-    hasCoffeeMachine: boolean,
-    hasMicrowave: boolean,
-    hasFridge: boolean,
-};
+// type IPlace = {
+//     name: string,
+//     type: string,
+//     fl: number,
+//     pl: number,
+//     capacity: number,
+//     hasTv: boolean,
+//     hasWindowsPc: boolean,
+//     hasTable: boolean,
+//     hasAppleTv: boolean,
+//     hasBorad: boolean,
+//     hasCoffeeMachine: boolean,
+//     hasMicrowave: boolean,
+//     hasFridge: boolean,
+// };
 
 
 class Filler {
-    private countOfLevels = 2;
+    private countOfLevels = 3;
     // private readonly confluenceBaseUrl: string;
-    private chiefList: string[] =  [];
+    // private chiefList: string[] =  [];
 
-    private xmlData = fs.readFileSync(
-        path.resolve(__dirname, '../../../../../../../../public/data/uploads/stuff.xml'),
-        {
-            encoding: 'utf8',
-            flag:'r'
-        }
-    );
-    private confluenceData = fs.readFileSync(
-        path.resolve(__dirname, '../../../../../../../../assets/data/confluenceData.json'),
-        {
-            encoding: 'utf8',
-            flag:'r'
-        }
-    );
+    // private xmlData = fs.readFileSync(
+    //     path.resolve(__dirname, '../../../../../../../../public/data/uploads/stuff.xml'),
+    //     {
+    //         encoding: 'utf8',
+    //         flag:'r'
+    //     }
+    // );
+    // private confluenceData = fs.readFileSync(
+    //     path.resolve(__dirname, '../../../../../../../../assets/data/confluenceData.json'),
+    //     {
+    //         encoding: 'utf8',
+    //         flag:'r'
+    //     }
+    // );
 
     constructor() {
     }
 
-    clearData = async () => {
-        console.log('clearData');
+    // clearData = async () => {
+    //     console.log('clearData');
 
-        const users = parser.parse(this.xmlData).identities.identity;
-        const currentUsers = await models.User.find({});
+    //     const users = parser.parse(this.xmlData).identities.identity;
+    //     const currentUsers = await models.User.find({});
 
-        const dismissedUsers = currentUsers.reduce((acc, user) => {
-            const isDismiss = !users.some(
-                (item: any) => item.user_name.toLowerCase() === user.username.toLowerCase(),
-            );
+    //     const dismissedUsers = currentUsers.reduce((acc, user) => {
+    //         const isDismiss = !users.some(
+    //             (item: any) => item.user_name.toLowerCase() === user.username.toLowerCase(),
+    //         );
 
-            if (isDismiss) {
-                acc.push(user.username);
-            }
+    //         if (isDismiss) {
+    //             acc.push(user.username);
+    //         }
 
-            return acc;
-        }, [] as string[]);
+    //         return acc;
+    //     }, [] as string[]);
 
-        await models.User.deleteMany(
-            {
-                "username": {
-                    $in: dismissedUsers
-                }
-            }
-        );
-    };
+    //     await models.User.deleteMany(
+    //         {
+    //             "username": {
+    //                 $in: dismissedUsers
+    //             }
+    //         }
+    //     );
+    // };
 
-    addUsersAndDepartments = async () => {
-        console.log('addUsersAndDepartments');
-        const departmentsIds: {[key: string]: string} = {};
-        const users = parser.parse(this.xmlData).identities.identity;
+    // addUsersAndDepartments = async () => {
+    //     console.log('addUsersAndDepartments');
+    //     const departmentsIds: {[key: string]: string} = {};
+    //     const users = parser.parse(this.xmlData).identities.identity;
 
 
-        const confluenceUsers = JSON.parse(this.confluenceData);
+    //     const confluenceUsers = JSON.parse(this.confluenceData);
 
-        for (const user of users) {
-            if (user.chief && !this.chiefList.includes(user.chief.toLowerCase())) {
-                this.chiefList.push(user.chief.toLowerCase());
-            } 
+    //     for (const user of users) {
+    //         if (user.chief && !this.chiefList.includes(user.chief.toLowerCase())) {
+    //             this.chiefList.push(user.chief.toLowerCase());
+    //         } 
 
-            const username = user.user_name.toLowerCase();
-            const searchResult = await models.User.findOne({"username": username});
+    //         const username = user.user_name.toLowerCase();
+    //         const searchResult = await models.User.findOne({"username": username});
 
-            const confluenceUser = confluenceUsers.find((item: any) => {
-                return item.username.toLowerCase() === user.user_name.toLowerCase();
-            })
-            const currentDepartment = user.division2 || user.division1;
+    //         const confluenceUser = confluenceUsers.find((item: any) => {
+    //             return item.username.toLowerCase() === user.user_name.toLowerCase();
+    //         })
+    //         const currentDepartment = user.division2 || user.division1;
 
-            let departmentModel: IDepartment;
+    //         let departmentModel: IDepartment;
 
-            const departmentResult = await models.Department.findOne({currentDepartment});
+    //         const departmentResult = await models.Department.findOne({currentDepartment});
 
-            if (!departmentsIds[currentDepartment]) {
-                if (!departmentResult) {
-                    departmentModel = new models.Department({
-                        name: currentDepartment,
-                        division: user.division1,
-                    });
-                } else {
-                    departmentModel = departmentResult;
-                }
+    //         if (!departmentsIds[currentDepartment]) {
+    //             if (!departmentResult) {
+    //                 departmentModel = new models.Department({
+    //                     name: currentDepartment,
+    //                     division: user.division1,
+    //                 });
+    //             } else {
+    //                 departmentModel = departmentResult;
+    //             }
 
-                departmentsIds[currentDepartment] = departmentModel.id;
+    //             departmentsIds[currentDepartment] = departmentModel.id;
 
-                if (!departmentResult) {
-                    await departmentModel.save();
-                }
-            }
+    //             if (!departmentResult) {
+    //                 await departmentModel.save();
+    //             }
+    //         }
 
-            if (!searchResult) {
-                const userModel = new models.User({
-                    username: user.user_name.toLowerCase(),
-                    name: !!confluenceUser ? confluenceUser.displayName : '',
-                    email: user.user_email,
-                    position: user.job_title,
-                    avatar: 'avatarSrc',
-                    chief: user.chief,
-                    birthday: user.birthday,
-                    entryDate: user.entry_date,
-                    division1: user.division1,
-                    division2: user.division2,
-                    vacationDates: user.vacation_dates,
-                    vacationLeft: user.vacation_left,
-                    department: departmentsIds[currentDepartment],
-                });
+    //         if (!searchResult) {
+    //             const userModel = new models.User({
+    //                 username: user.user_name.toLowerCase(),
+    //                 name: !!confluenceUser ? confluenceUser.displayName : '',
+    //                 email: user.user_email,
+    //                 position: user.job_title,
+    //                 avatar: 'avatarSrc',
+    //                 chief: user.chief,
+    //                 birthday: user.birthday,
+    //                 entryDate: user.entry_date,
+    //                 division1: user.division1,
+    //                 division2: user.division2,
+    //                 vacationDates: user.vacation_dates,
+    //                 vacationLeft: user.vacation_left,
+    //                 department: departmentsIds[currentDepartment],
+    //             });
 
-                await userModel.save();
-            } else if (departmentResult) {
-                await searchResult.update({
-                    name: !!confluenceUser ? confluenceUser.displayName : '',
-                    position: user.job_title,
-                    avatar: 'avatarSrc',
-                    chief: user.chief,
-                    birthday: user.birthday,
-                    entryDate: user.entry_date,
-                    division1: user.division1,
-                    division2: user.division2,
-                    vacationDates: user.vacation_dates,
-                    vacationLeft: user.vacation_left,
-                    department: departmentResult.id, 
-                });
-            }
-        };
-    };
+    //             await userModel.save();
+    //         } else if (departmentResult) {
+    //             await searchResult.update({
+    //                 name: !!confluenceUser ? confluenceUser.displayName : '',
+    //                 position: user.job_title,
+    //                 avatar: 'avatarSrc',
+    //                 chief: user.chief,
+    //                 birthday: user.birthday,
+    //                 entryDate: user.entry_date,
+    //                 division1: user.division1,
+    //                 division2: user.division2,
+    //                 vacationDates: user.vacation_dates,
+    //                 vacationLeft: user.vacation_left,
+    //                 department: departmentResult.id, 
+    //             });
+    //         }
+    //     };
+    // };
 
-    addChiefs = () => {
-        console.log('addChiefs');
-        this.chiefList.forEach(async (user) => {
-            await models.User.findOneAndUpdate({username: user}, { isChief: true });
-        });
-    };
+    // addChiefs = () => {
+    //     console.log('addChiefs');
+    //     this.chiefList.forEach(async (user) => {
+    //         await models.User.findOneAndUpdate({username: user}, { isChief: true });
+    //     });
+    // };
 
-    addPlaces = () => {
-        console.log('addPlaces');
-        places.forEach(async (place: IPlace) => {
-            const pl = new models.Place({
-                name: place.name,
-                type: place.type,
-                mapid: place.pl,
-                capacity: place.capacity,
-                hasTv: place.hasTv,
-                hasWindowsPc: place.hasWindowsPc,
-                hasTable: place.hasTable,
-                hasAppleTv: place.hasAppleTv,
-                hasBorad: place.hasBorad,
-                hasCoffeeMachine: place.hasCoffeeMachine,
-                hasMicrowave: place.hasMicrowave,
-                hasFridge: place.hasFridge,
-            });
+    // addPlaces = () => {
+    //     console.log('addPlaces');
+    //     places.forEach(async (place: IPlace) => {
+    //         const pl = new models.Place({
+    //             name: place.name,
+    //             type: place.type,
+    //             mapid: place.pl,
+    //             capacity: place.capacity,
+    //             hasTv: place.hasTv,
+    //             hasWindowsPc: place.hasWindowsPc,
+    //             hasTable: place.hasTable,
+    //             hasAppleTv: place.hasAppleTv,
+    //             hasBorad: place.hasBorad,
+    //             hasCoffeeMachine: place.hasCoffeeMachine,
+    //             hasMicrowave: place.hasMicrowave,
+    //             hasFridge: place.hasFridge,
+    //         });
 
-            const level = await models.Level.find({"fl": place.fl});
+    //         const level = await models.Level.find({"fl": place.fl});
 
-            if (level) {
-                pl.level = level[0]._id;
-            }
+    //         if (level) {
+    //             pl.level = level[0]._id;
+    //         }
 
-            await pl.save();
-        });
-    };
+    //         await pl.save();
+    //     });
+    // };
 
     addLevels = async () => {
         console.log('addLevels');
@@ -210,6 +210,8 @@ class Filler {
                 'utf8'
             );
 
+            fs.writeFileSync(path.resolve(__dirname, `../../../../../../../../assets/img/levels/level${i}.txt`), floor);
+
             const floorModel = new models.Level({
                 name: `${i} этаж`,
                 fl: i,
@@ -220,43 +222,45 @@ class Filler {
         }
     };
 
-    inspectIsFillAll = async () => {
-        console.log('inspectIsFillAll');
-        const userResult = await models.User.findOne();
-        const levelResult = await models.Level.findOne();
-        const departmentResult = await models.Department.findOne();
-        const placeResult = await models.Place.findOne();
+    // inspectIsFillAll = async () => {
+    //     console.log('inspectIsFillAll');
+    //     const userResult = await models.User.findOne();
+    //     const levelResult = await models.Level.findOne();
+    //     const departmentResult = await models.Department.findOne();
+    //     const placeResult = await models.Place.findOne();
 
-        return (!userResult && !levelResult && !departmentResult && !placeResult);
-    };
+    //     return (!userResult && !levelResult && !departmentResult && !placeResult);
+    // };
 
     fillDB = async () => {
         console.log('fillDB');
 
-        const isFillAll = await this.inspectIsFillAll();
-        const promises = [];
+        await this.addLevels();
 
-        if (isFillAll) {
-            promises.push(models.User.deleteMany({}));
+        // const isFillAll = await this.inspectIsFillAll();
+        // const promises = [];
 
-            promises.push(models.Department.deleteMany({}));
+        // if (isFillAll) {
+        //     promises.push(models.User.deleteMany({}));
+
+        //     promises.push(models.Department.deleteMany({}));
             
-            promises.push(models.Level.deleteMany({}));
+        //     promises.push(models.Level.deleteMany({}));
             
-            promises.push(models.Place.deleteMany({}));
-        }
+        //     promises.push(models.Place.deleteMany({}));
+        // }
 
-        await Promise.all(promises);
+        // await Promise.all(promises);
         
-        if (isFillAll) {
-            await this.addLevels();
-            this.addPlaces();
-        }
+        // if (isFillAll) {
+        //     await this.addLevels();
+        //     this.addPlaces();
+        // }
         
-        await this.clearData();
+        // await this.clearData();
 
-        await this.addUsersAndDepartments();
-        this.addChiefs();
+        // await this.addUsersAndDepartments();
+        // this.addChiefs();
         return;
     };
 }

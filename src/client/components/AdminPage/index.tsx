@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 import { Loading } from '../../../common/components/Loading';
-import { CityAdressRow } from '../common/CityAdressRow';
+import { CityAdressRow } from '../common/CityAddressRow';
 
 const AdminPage: React.FC = () => {
   return (

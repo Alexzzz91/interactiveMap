@@ -13,9 +13,10 @@ type EditorAsideProps = {
   canvas: typeof SvgCanvas;
   // очень сложно с типами из svg edit
   currentElem: any;
+  setSvgContent: (newState: string) => void;
 }
 
-const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem }) => {
+const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem, setSvgContent }) => {
   const drawing = canvas.getCurrentDrawing();
   const [source, setSource] = React.useState('');
 
@@ -39,7 +40,8 @@ const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem }) => {
   }, []);
 
   const handleClick = () => {
-    console.log('canvas', canvas.setSvgString(source))
+    canvas.setSvgString(source);
+    setSvgContent(source);
   }
 
   const handleSetSource = (e) => {
@@ -49,7 +51,7 @@ const EditorAside: React.FC<EditorAsideProps> = ({ canvas, currentElem }) => {
   return (
     <AsideStyled>
       <ListInnerStyled>
-        <textarea spellcheck="false" rows="5" cols="80" value={source} onChange={handleSetSource}></textarea>
+        <textarea spellCheck="false" rows="5" cols="80" value={source} onChange={handleSetSource}></textarea>
         <button onClick={handleClick} >
           сохранить чего то там
         </button>
