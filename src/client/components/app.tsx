@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { ToastOptions, ToastPosition } from 'react-toastify';
-import { Link, Route, Routes, useSearchParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { MainContainer } from './Main';
 import { Aside } from './Aside/Aside';
 import { AsideContainer } from './Aside/AsideContainer';
-import { administrationRoute, editorRoutes, allRoutes } from '../../common/routerPaths';
+import { administrationRoute, editorRoutes } from '../../common/routerPaths';
 import { ContainerStyled } from './styles/app.styled';
 import { EditorContainer } from './Editor';
 import { useLocalStorage } from '../../common/hooks/useLocalStorage';
-// import { origin } from '../../common/config/url';
 import { Auth } from '../../common/auth/auth.h';
 import { AdminPage } from './AdminPage';
 
@@ -99,6 +98,7 @@ const App = () => {
               path={administrationRoute}
               element={ <AdminPage /> }
             />
+
             <Route
               path={editorRoutes}
               element={ <EditorContainer /> }
@@ -106,14 +106,14 @@ const App = () => {
 
             <Route 
               path='*'
-              element={(
+              element={
                 <>
                   <MainContainer />
                   <AsideContainer> 
                     <Aside />
                   </AsideContainer>
                 </>
-              )}
+              }
             />
           </Routes>
         </ContainerStyled>

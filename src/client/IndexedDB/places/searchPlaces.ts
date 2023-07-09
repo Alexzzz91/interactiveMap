@@ -1,6 +1,10 @@
 import { mapAppDb } from "..";
 import { IDbPlace } from "./loadPlaces";
 
+interface Level {
+    level: any
+};
+
 const getPlaces = async () => {
     const results = await mapAppDb
         .table('places')
@@ -19,7 +23,7 @@ const searchPlacesByName = async (starts: string) => {
     return results as IDbPlace[];
 };
 
-const searchPlacesByFloor = async ({level}: {level: string}) => {
+const searchPlacesByFloor = async ({level}: Level) => {
     const results = await mapAppDb
         .table('places')
         .where('level').equals(level)

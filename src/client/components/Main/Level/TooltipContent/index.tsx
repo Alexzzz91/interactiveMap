@@ -16,13 +16,13 @@ const TooltipContent: React.FC<{tooltipContent: string;}> = ({ tooltipContent })
 
     const { floorIndex } = useParams<IParamsProps>();
 
-    const getPersons = React.useCallback(async ({floorIndex, idWorkplace }: {floorIndex: string, idWorkplace: string }) => {
+    const getPersons = React.useCallback(async ({floorIndex, idWorkplace }: {floorIndex: any, idWorkplace: string }) => {
         const persons = await searchStaffByFloorAndWorkplace({level: floorIndex, workplaceid: idWorkplace});
 
         setPersons(persons);
     }, [setPersons]);
 
-    const getPlaces = React.useCallback(async ({floorIndex, idPlace }: {floorIndex: string, idPlace: string }) => {
+    const getPlaces = React.useCallback(async ({floorIndex, idPlace }: {floorIndex: any, idPlace: string }) => {
         const places = await searchPlacesByFloorAndPlace({level: floorIndex, mapid: idPlace});
 
         setPlaces(places);
