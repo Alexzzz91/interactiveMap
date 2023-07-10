@@ -1,20 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { CallbackError } from 'mongoose';
-import xpath from 'xpath';
-import { DOMParser } from 'xmldom';
 // @ts-ignore
 // import { GraphQLUpload } from 'graphql-upload';
-import { IUser, User } from '../data/user';
-import { Department, IDepartment } from '../data/department';
-import { ILevel, Level } from '../data/level';
-import { IPlace, Place } from '../data/place';
-import { IPoster, Poster } from '../data/poster';
+import { User } from '../data/user';
+import { Department } from '../data/department';
+import { Level } from '../data/level';
+import { Place } from '../data/place';
 import { Address} from '../data/address';
 
 import { Event } from '../data/event';
 // import { Void } from './scalarVoid';
-import { placeColors, placesType } from '../../../../common/commonValues';
+// import { placeColors, placesType } from '../../../../common/commonValues';
 import storeUpload from './storeUpload';
 import { PubSub } from 'graphql-subscriptions';
 import { City } from '../data/city';
@@ -303,22 +300,6 @@ const resolvers = {
                 throw err;
             });
         },
-        posters: () => Poster.find({}, (err: CallbackError, postersRes: IPoster[]) => {
-            if (!err) {
-                return postersRes;
-            }
-            throw err;
-        }),
-        // @ts-ignore
-        poster: (_parent, args) => {
-            // @ts-ignore
-            return Poster.find({ posterid: args.posterid, level: args.levelId}, (err: CallbackError, poster) => {
-                if (!err) {
-                    return poster;
-                }
-                throw err;
-            });
-        },
         // @ts-ignore
         uploads: (parent, args) => {},
         // @ts-ignore
@@ -479,161 +460,6 @@ const resolvers = {
             );
         },
         // @ts-ignore
-        placeSetType: async (_root, {place, type, level, itemId}) => {
-            let floor = fs.readFileSync(
-                path.resolve(__dirname, `../../../../../../../assets/img/levels/level${level}.svg`),
-                'utf8'
-            );
-            
-            const doc = new DOMParser().parseFromString(floor);
-
-            const mapid = place.match(/place(\d+$)/)[1];
-
-            const targetPlace = xpath.select(
-                `//*[@id="Regions"]/*[@id = '${place}']`,
-                doc
-            );
-            
-            let entitie;
-            let placeColor;
-
-            const levelModel = await Level.findOne({fl: Number(level)}, (err: CallbackError, level: ILevel) => {
-                if (err) {
-                    return console.log(err);
-                }
-
-                return level;
-            });
-
-            switch (type) {
-                case 'user':
-                    // @ts-ignore
-                    entitie = await User.findById<IUser>(itemId, {mapid, floor: level}, (err: CallbackError, user: IUser) => {
-                        if (err) {
-                            return console.log(err);
-                        }
-
-                        return user;
-                    });
-
-                    placeColor = placeColors.workPlace;
-                    
-                    break;
-                case 'department':
-                    // @ts-ignore
-                    entitie = await Department.findByIdAndUpdate<IDepartment>(itemId, {mapid, level: levelModel}, (err: CallbackError, dep: IDepartment) => {
-                        if (err) {
-                            return console.log(err);
-                        }
-
-                        return dep;
-                    });
-
-                    placeColor = placeColors.department;
-                    
-                    break;
-                case 'place':
-                    // @ts-ignore
-
-                    entitie = await Place.findByIdAndUpdate<IPlace>(itemId, {mapid, level: levelModel}, (err: CallbackError, place: IPlace) => {
-                        if (err) {
-                            return console.log(err);
-                        }
-
-                        return place;
-                    });
-
-                    if (entitie) {
-                        switch (entitie.type) {
-                            case placesType.Wardrobe:
-                                placeColor = placeColors.wardrobe;
-                                break;
-
-                            case placesType.Atm:
-                                placeColor = placeColors.atm;
-                                break;
-
-                            case placesType.ChillZone:
-                                placeColor = placeColors.chillZone;
-                                break;
-
-                            case placesType.EatingFacilities:
-                                placeColor = placeColors.eatingFacilities;
-                                break;
-
-                            case placesType.Elevator:
-                                placeColor = placeColors.elevator;
-                                break;
-
-                            case placesType.GameRoom:
-                                placeColor = placeColors.gameRoom;
-                                break;
-
-                            case placesType.Hallway:
-                                placeColor = placeColors.hallway;
-                                break;
-                            
-                            case placesType.Kiosk:
-                                placeColor = placeColors.kiosk;
-                                break;
-
-                            case placesType.MeetingRoom:
-                                placeColor = placeColors.meetingRoom;
-                                break;
-
-                            case placesType.Security:
-                                placeColor = placeColors.security;
-                                break;
-
-                            case placesType.ShowerRoom:
-                                placeColor = placeColors.showerRoom;
-                                break;
-
-                            case placesType.ServerRoom:
-                                placeColor = placeColors.specialRoom;
-                                break;
-                            
-                            case placesType.TalkingBooths:
-                                placeColor = placeColors.talkingBooths;
-                                break;
-
-                            case placesType.Toilet:
-                                placeColor = placeColors.toulet;
-                                break;
-
-                            case placesType.TopManager:
-                                placeColor = placeColors.topManager;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    
-                    break;
-            }
-
-            if (targetPlace && targetPlace[0]) {
-                // @ts-ignore
-                targetPlace[0].setAttribute('fill', placeColor);
-            }
-
-            const levelSchema = doc.documentElement.toString();
-
-            fs.writeFileSync(
-                path.resolve(__dirname, `../../../../../../../assets/img/levels/level${level}.svg`),
-                levelSchema,
-            );
-
-            // @ts-ignore
-            return Level.findOneAndUpdate({fl: level}, {levelSchema}, (err: CallbackError, floor) => {
-                if (!err) {
-                    return floor;
-                }
-
-                throw err;
-            });
-        },
-        // @ts-ignore
         updateLevelSchema: async (_root, { index, levelSchema, city, address, ...rest }) => {
             try {
                 fs.writeFileSync(
@@ -755,38 +581,6 @@ const resolvers = {
             } catch (error) {
                 throw error;
             }
-        },
-        // @ts-ignore
-        updateOrCreatePoster: async (_root, {id, floorIndex, ...rest}) => {
-            const levelModel = await Level.find({"fl": Number(floorIndex)});
-
-            let level = null;
-
-            if (levelModel.length) {
-                level = levelModel[0]._id;
-            }
-
-            if (id) {
-                return Poster.findByIdAndUpdate(
-                    id, {...rest, level}, {}, (err: CallbackError, res) => {
-                        if (!err) {
-                            return res;
-                        }
-    
-                        throw err;
-                    }
-                );
-            }
-
-            // @ts-ignore
-            return Poster.create({...rest, level}, (err: CallbackError, res) => {
-                    if (!err) {
-                        return res;
-                    }
-
-                    throw err;
-                }
-            );
         },
         // @ts-ignore
         deletePlace: async (_root, {id}) => {

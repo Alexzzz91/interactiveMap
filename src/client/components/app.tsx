@@ -3,14 +3,12 @@ import { hot } from 'react-hot-loader';
 import { ToastOptions, ToastPosition } from 'react-toastify';
 import { Route, Routes } from "react-router-dom";
 import { MainContainer } from './Main';
-import { Aside } from './Aside/Aside';
-import { AsideContainer } from './Aside/AsideContainer';
-import { administrationRoute, editorRoutes } from '../../common/routerPaths';
 import { ContainerStyled } from './styles/app.styled';
-import { EditorContainer } from './Editor';
 import { useLocalStorage } from '../../common/hooks/useLocalStorage';
 import { Auth } from '../../common/auth/auth.h';
+import { administrationRoute, editorRoutes } from '../../common/routerPaths';
 import { AdminPage } from './AdminPage';
+import { EditorContainer } from './Editor';
 
 type MapToastPosition = ToastPosition | 'bottom-right-with-aside';
 
@@ -109,9 +107,9 @@ const App = () => {
               element={
                 <>
                   <MainContainer />
-                  <AsideContainer> 
+                  {/* <AsideContainer> 
                     <Aside />
-                  </AsideContainer>
+                  </AsideContainer> */}
                 </>
               }
             />

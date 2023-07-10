@@ -110,6 +110,7 @@ const Main: React.FC<MainProps>  = ({ floors, currentCity, currentAddress }) => 
                 ))}
               </LevelsStyled>
             )}
+
             {!floors.length && !!currentCity && !!currentAddress &&(
               <NoFloorsMesageStyled>
                 У вас нет планов этажей &nbsp;

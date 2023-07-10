@@ -37,6 +37,7 @@
         "./dist",
         "./assets/legendIcons/",
         "./src/client",
-        "./src/serviceWorker"
+        "./src/serviceWorker",
+        "./webpack.config.ts"
     ],
   }
