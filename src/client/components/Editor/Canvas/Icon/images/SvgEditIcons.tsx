@@ -1503,7 +1503,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         width={100}
         height={100}
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:se="http://svg-edit.googlecode.com"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         {...props}
       >
@@ -1529,7 +1528,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         width={100}
         height={100}
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:se="http://svg-edit.googlecode.com"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         {...props}
       >
@@ -1554,7 +1552,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         height={100}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        xmlns:se="http://svg-edit.googlecode.com"
         {...props}
       >
         <path
@@ -1580,7 +1577,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         height={100}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        xmlns:se="http://svg-edit.googlecode.com"
         {...props}
       >
         <path
@@ -1605,7 +1601,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         height={100}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        xmlns:se="http://svg-edit.googlecode.com"
         {...props}
       >
         <path
@@ -1631,7 +1626,6 @@ function SvgSvgEditIcons(props: React.SVGProps<SVGSVGElement>) {
         height={100}
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        xmlns:se="http://svg-edit.googlecode.com"
         {...props}
       >
         <path

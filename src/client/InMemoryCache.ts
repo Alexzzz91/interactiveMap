@@ -7,8 +7,11 @@ const cache = new InMemoryCache({
                 moreFloors: {
                     merge(existing, incoming, { readField }) {
                         const results = existing ? { ...existing.results } : {};
+
                         incoming.results.forEach(floor => {
-                            results[readField("id", floor)] = floor;
+                            const field: any = readField("id", floor);
+
+                            results[field] = floor;
                         });
 
                         return {
@@ -27,10 +30,12 @@ const cache = new InMemoryCache({
                 },
                 moreUsers: {
                     merge(existing, incoming, { readField }) {
-                        const results = existing ? { ...existing.results } : {};
+                        const results: any = existing ? { ...existing.results } : {};
                         
-                        incoming.results.forEach(floor => {
-                            results[readField("id", floor)] = floor;
+                        incoming.results.forEach((floor: any) => {
+                            const field: any = readField("id", floor);
+
+                            results[field] = floor;
                         });
 
                         return {

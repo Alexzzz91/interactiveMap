@@ -60,7 +60,6 @@ const splitLink = split(
   httpLink,
 );
 
-
 const Root = () => {
   const [currentTheme, setCurrentTheme] = React.useState<ThemeName>(ThemeName.MAIN);
   const [client, setClient] = React.useState<ApolloClient<NormalizedCacheObject>>();
@@ -76,9 +75,13 @@ const Root = () => {
     }
 
     const getClient = async () => {
+      // todo: поправить типы
+      // LocalStorageWrapper не подходит по типам к storage
+      let storage: any = new LocalStorageWrapper(window.localStorage);
+
       let newPersistor = new CachePersistor({
         cache,
-        storage: new LocalStorageWrapper(window.localStorage),
+        storage: storage,
         key: 'interactive_map-cache',
         trigger: 'write',
         debug: true,

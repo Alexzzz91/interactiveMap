@@ -66,7 +66,8 @@ type LevelProps = {
     level: number;
 }
 
-const setLevel = ({ level }: LevelProps) => {
+// const setLevel = ({ level }: LevelProps) => {
+const setLevel = () => {
     return ``;
     // return `
     //     transform: translateZ(${(level - 1) * 10}vmin);
@@ -159,7 +160,7 @@ const LevelDiv = styled.div<LevelDivProps>`
         }
     }
 
-    ${(props) => setLevel(props)}
+    ${() => setLevel()}
     ${(props) => isCurrent(props)}
     ${(props) => setCurrentArea(props)}
     ${(props) => setCurrentWordplace(props)}
@@ -273,7 +274,7 @@ const LevelLink = styled(Link)<LevelDivProps>`
         }
     }
 
-    ${(props) => setLevel(props)}
+    ${() => setLevel()}
     ${(props) => isCurrent(props)}
 `;
 
