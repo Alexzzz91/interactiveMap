@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Main } from './Main';
+import { NewMain } from './NewMain';
 
 import { useQuery } from '@apollo/react-hooks';
 import { moreFloorQuery, FloorsQueryData } from '../../gql/floorGql';
@@ -56,11 +56,7 @@ const MainContainer: React.FC = (_props) => {
   const { moreFloors } = data;
 
   return (
-    <Main 
-      floors={moreFloors?.results ?? []} 
-      currentCity={currentCity}
-      currentAddress={currentAddress}
-    />
+    <NewMain floors={moreFloors?.results ?? []} />
   );
 };
 

@@ -9,19 +9,20 @@ const MainContainerStyled = styled.div`
     left: 0;
     overflow: hidden;
     height: 100vh;
+    width: 100%;
     transition: all 1.01s;
 
-    @media ${device.mobileS} { 
-        position: relative;
-        width: 100%;
-        height: 60vh;
-    }
+    // @media ${device.mobileS} { 
+    //     position: relative;
+    //     width: 100%;
+    //     height: 60vh;
+    // }
 
-    @media ${device.tablet} { 
-        position: absolute;
-        height: 100vh;
-        width: calc(100vw - 350px);
-    }
+    // @media ${device.tablet} { 
+    //     position: absolute;
+    //     height: 100vh;
+    //     width: calc(100vw - 350px);
+    // }
 `;
 
 const MallStyled = styled.div`

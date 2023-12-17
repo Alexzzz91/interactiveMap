@@ -27,8 +27,10 @@ RUN set -ex && \
 
 RUN set -ex && \
     npm install pm2 -g && \
-    npm ci install && \
-    yarn tsc
+    yarn install --frozen-lockfile && \
+    npm run build && \
+    npm run tsc && \
+    rm -rf ./node_modules
 
 ENTRYPOINT ["pm2-runtime", "/var/www/pm2.config.js"]
 

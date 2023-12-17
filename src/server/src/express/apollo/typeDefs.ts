@@ -249,8 +249,6 @@ const typeDefs = gql`
       floor: Int!,
     ): User
 
-    placeSetType(place: String!, type: String!, level: String!, itemId: String!): Void
-
     updateLevelSchema(
       index: String!,
       name: String,

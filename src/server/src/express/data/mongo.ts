@@ -5,7 +5,6 @@ import { Workplace } from './workplace';
 import { Department } from './department';
 import { Level } from './level';
 import { Place } from './place';
-import { Poster } from './poster';
 import { Event } from './event';
 import { City } from './city';
 import { Address } from './address';
@@ -30,7 +29,6 @@ const models = {
   Department,
   Level,
   Place,
-  Poster,
   Event,
   City,
   Address,

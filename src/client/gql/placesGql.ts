@@ -36,12 +36,6 @@ const placesQuery = gql`
 } 
 `;
 
-const placeSetType = gql`
-  mutation PlaceSetType($place: String!, $type: String!, $level: String!, $itemId: String!) {
-    placeSetType(place: $place, type: $type, level: $level, itemId: $itemId)
-  }
-`;
-
 const updateOrCreatePlace = gql`
     mutation UpdateOrCreatePlace(
         $id: String, 
@@ -168,7 +162,6 @@ interface PlacesQueryData {
 
 export {
     placesQuery,
-    placeSetType,
     updateOrCreatePlace,
     placeUploadImage,
     deletePlace,
