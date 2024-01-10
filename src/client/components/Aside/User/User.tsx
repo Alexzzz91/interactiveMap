@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';

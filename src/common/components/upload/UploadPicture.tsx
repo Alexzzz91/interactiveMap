@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Add48 } from '../icons';
 
 import {
@@ -21,21 +21,21 @@ type Props = {
     onChange(result: UploadPictureResult | null): void;
 }
 
-const UploadPicture: React.FC<Props> = (props) => {
+const UploadPicture: FC<Props> = (props) => {
     const {
         value,
         caption = 'Загрузите фотографию',
         onChange,
     } = props;
 
-    const [imgPreview, setImgPreview] = React.useState<string>(value || '');
+    const [imgPreview, setImgPreview] = useState<string>(value || '');
     
-    const handleClearClick = React.useCallback(() => {
+    const handleClearClick = useCallback(() => {
         setImgPreview('');
         onChange(null);
     }, [setImgPreview]);
 
-    const handleOnChange = React.useCallback((event: any) => {
+    const handleOnChange = useCallback((event: any) => {
         const {
             target: {
                 validity,

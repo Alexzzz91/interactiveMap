@@ -1,6 +1,6 @@
 
 import { useApolloClient } from '@apollo/client';
-import * as React from 'react';
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Auth } from '../../../../common/auth/auth.h';

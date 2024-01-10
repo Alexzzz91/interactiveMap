@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 import { Level } from './Level/Level';

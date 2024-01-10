@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { UserData } from '../../../gql/usersGql';
 import { Search } from '../../../services/search';
 import { SearchInput } from "./SearchInput/SearchInput";

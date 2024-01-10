@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 
 import { AddressRowContainer } from '../AddressSelect';
 import { CityRowContainer } from '../CitySelect';

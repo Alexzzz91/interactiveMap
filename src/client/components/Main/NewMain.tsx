@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 
 import { Level } from './Level/Level';
 import { FloorData } from '../../gql/floorGql';

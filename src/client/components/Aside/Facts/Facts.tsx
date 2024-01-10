@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react'
 import { searchStaffHasBDay, searchStaffInVacation } from '../../../IndexedDB/staff/searchStaff';
 import { IDbUser } from '../../../IndexedDB/staff/loadStaff';
 import { mapAppDb } from '../../../IndexedDB';

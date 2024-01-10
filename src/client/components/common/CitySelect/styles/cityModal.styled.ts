@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import Modal from 'react-modal';
 import { Close } from "../../../../../common/components/icons";
 
-const NewCityModalStyled = styled(Modal)`
+const NewCityModalStyled = styled.div`
     background: ${({ theme }) => (theme.color.santiago)};    
     box-shadow: 0px 0px 20px 2px ${({ theme }) => (theme.color.nara)};
     min-width: 600px;
@@ -48,7 +47,6 @@ const NewCityModalButtonStyled = styled.button`
         opacity: 0.82;
     }
 `;
-
 
 const NewCityModalButtonCloseStyled = styled(Close)`
     position: absolute;

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react'
 
 function SvgFridge(props: React.SVGProps<SVGSVGElement>) {
   return (

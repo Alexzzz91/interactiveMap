@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { NewMain } from './NewMain';
 
 import { useQuery } from '@apollo/react-hooks';

@@ -1,6 +1,6 @@
-import * as React from "react";
+import React, { SVGProps } from 'react'
 
-function SvgPenTool(props: React.SVGProps<SVGSVGElement>) {
+function SvgPenTool(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

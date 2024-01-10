@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react'
 
 function SvgVkusvill(props: React.SVGProps<SVGSVGElement>) {
   return (

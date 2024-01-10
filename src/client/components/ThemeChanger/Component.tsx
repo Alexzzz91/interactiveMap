@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { ThemeName } from '../../Theme';
 
 import { ContainerStyled, MoonButtonStyled } from './styles/themeChanger.styled';

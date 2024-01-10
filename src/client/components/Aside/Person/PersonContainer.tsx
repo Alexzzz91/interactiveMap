@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { searchStaffById, searchStaffByUserName } from '../../../IndexedDB/staff/searchStaff';
 import { IParamsProps } from '../../app';

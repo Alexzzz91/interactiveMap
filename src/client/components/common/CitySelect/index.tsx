@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import Modal from 'react-modal';
 import { toast, ToastOptions } from 'react-toastify';
 
@@ -19,16 +19,16 @@ import {
   NewCityModalTitleStyled,
 } from './styles/cityModal.styled';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+// const customStyles = {
+//   content: {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: 'auto',
+//     marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//   },
+// };
 
 Modal.setAppElement('#root');
 
@@ -48,16 +48,16 @@ const CityRowContainer: React.FC = (_props) => {
   }, [setCity, setCurrentCity]);
 
   // let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
+  // function afterOpenModal() {
+  //   // // references are now sync'd and can be accessed.
+  //   // subtitle.style.color = '#f00';
+  // }
 
   function closeModal() {
     setIsOpen(false);
@@ -146,11 +146,11 @@ const CityRowContainer: React.FC = (_props) => {
         </>
       )}
       <NewCityModalStyled
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Добавить город"
+        // isOpen={modalIsOpen}
+        // onAfterOpen={afterOpenModal}
+        // onRequestClose={closeModal}
+        // style={customStyles}
+        // contentLabel="Добавить город"
       >
         <NewCityModalTitleStyled>Добавить город</NewCityModalTitleStyled>
         <NewCityModalButtonCloseStyled onClick={closeModal}>close</NewCityModalButtonCloseStyled>

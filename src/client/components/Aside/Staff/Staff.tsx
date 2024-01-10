@@ -2,7 +2,7 @@
 import { GroupedVirtuoso } from 'react-virtuoso';
 import { useParams } from 'react-router-dom';
 import { toast, ToastOptions } from 'react-toastify';
-import * as React from 'react';
+import React from 'react'
 import { 
     ContainerStyled,
     DepartmentNameStyled,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import Modal from 'react-modal';
 import { toast, ToastOptions } from 'react-toastify';
 
@@ -20,16 +20,16 @@ import {
   NewAddressModalTitleStyled,
 } from './styles/addressModal.styled';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+// const customStyles = {
+//   content: {
+//     top: '50%',
+//     left: '50%',
+//     right: 'auto',
+//     bottom: 'auto',
+//     marginRight: '-50%',
+//     transform: 'translate(-50%, -50%)',
+//   },
+// };
 
 Modal.setAppElement('#root');
 
@@ -57,16 +57,16 @@ const AddressRowContainer: React.FC = (_props) => {
   }, [setAddress, setCurrentAddress]);
 
   // let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [, setIsOpen] = React.useState(false);
 
   function openModal() {
     setIsOpen(true);
   }
 
-  function afterOpenModal() {
-    // // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
+  // function afterOpenModal() {
+  //   // // references are now sync'd and can be accessed.
+  //   // subtitle.style.color = '#f00';
+  // }
 
   function closeModal() {
     setIsOpen(false);
@@ -166,11 +166,11 @@ const AddressRowContainer: React.FC = (_props) => {
         )}
 
       <NewAddressModalStyled
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Добавить Адрес"
+        // isOpen={modalIsOpen}
+        // onAfterOpen={afterOpenModal}
+        // onRequestClose={closeModal}
+        // style={customStyles}
+        // contentLabel="Добавить Адрес"
       >
         <NewAddressModalTitleStyled>Добавить Адрес</NewAddressModalTitleStyled>
         <NewAddressModalButtonCloseStyled onClick={closeModal}>close</NewAddressModalButtonCloseStyled>

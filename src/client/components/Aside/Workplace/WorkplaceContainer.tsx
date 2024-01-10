@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { searchStaffByFloorAndWorkplace } from '../../../IndexedDB/staff/searchStaff';
 import { IParamsProps } from '../../app';

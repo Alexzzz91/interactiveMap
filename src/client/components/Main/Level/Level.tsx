@@ -1,5 +1,5 @@
 // @ts-ignore-file
-import * as React from 'react';
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { IParamsProps } from '../../app';
 import { searchStaffByFloor } from '../../../IndexedDB/staff/searchStaff';

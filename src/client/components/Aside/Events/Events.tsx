@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { useApolloClient, useQuery } from '@apollo/client';
 
 import { eventsQuery, eventSubscription } from "../../../gql/eventGql";

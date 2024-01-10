@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { EventData } from '../../../gql/eventGql';
 
 import { EventContainerStyled, AsLink } from './styles/events.styled';

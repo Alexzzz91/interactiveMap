@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { Layer, LayerItem } from './LayerItem';
 import { 
   ContainerStyled,

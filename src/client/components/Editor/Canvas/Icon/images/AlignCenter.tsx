@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react'
 
 function SvgAlignCenter(props: React.SVGProps<SVGSVGElement>) {
   return (

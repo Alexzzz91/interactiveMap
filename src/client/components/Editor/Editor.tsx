@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { useMutation } from '@apollo/react-hooks';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 

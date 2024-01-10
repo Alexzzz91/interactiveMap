@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { Checkbox } from '../../../../../../common/components/Checkbox/Checkbox';
 
 import {

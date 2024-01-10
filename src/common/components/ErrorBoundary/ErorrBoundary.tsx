@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Error } from '../Error';
 import { 
     BackToMainPageStyled,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 
 function useLocalStorage(key: string, initialValue: string) {
   const [storedValue, setStoredValue] = React.useState(() => {

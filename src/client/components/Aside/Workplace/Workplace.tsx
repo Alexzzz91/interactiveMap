@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Person } from '../../../../common/components/Person/Person';
 import { UserData } from '../../../gql/usersGql';
 

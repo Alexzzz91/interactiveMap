@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { IconStyled } from './styles/Icon.styled';
 
     // @ts-ignore

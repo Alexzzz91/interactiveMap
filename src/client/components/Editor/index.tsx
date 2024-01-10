@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 

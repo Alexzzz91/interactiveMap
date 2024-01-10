@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import * as React from 'react';
+import React from 'react'
 import { createFCMToken, UserData } from '../../../gql/usersGql';
 import {
     getCanRequest,

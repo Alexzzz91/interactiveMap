@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react'
 
 function SvgTable3(props: React.SVGProps<SVGSVGElement>) {
   return (

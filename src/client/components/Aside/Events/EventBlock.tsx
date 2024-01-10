@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { CheckEvent } from './CheckEvent';
 import { CreateEvent } from './CreateEvent';
 

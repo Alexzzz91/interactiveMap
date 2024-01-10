@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 
 import { Close } from '../../../../../common/components/icons';

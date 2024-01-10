@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react'
 import { useSearchParams } from 'react-router-dom';
 import * as Icons from '../../../../common/components/icons/legendIcons';
 import { searchPlacesByFloor } from '../../../IndexedDB/places/searchPlaces';

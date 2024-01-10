@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { InfoBlock } from '../../../../common/components/InfoBlock/InfoBlock';
 import { IDbPlace } from '../../../IndexedDB/places/loadPlaces';
 import { placeСompositionIcons, placeСompositionNames } from '../../../../common/commonValues';

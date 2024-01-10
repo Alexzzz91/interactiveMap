@@ -1,5 +1,5 @@
 // @ts-nocheck
-import * as React from 'react';
+import React from 'react'
 import { SelectLayer } from './SelectLayer/SelectLayer';
 import { SelectPanelContainer } from './SelectPanel/SelectPanelContainer';
 import SvgCanvas from 'svgedit/editor/svgcanvas';

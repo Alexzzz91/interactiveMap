@@ -1,9 +1,9 @@
-import { EditorState, ContentState, convertToRaw } from 'draft-js';
+// import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import React from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import htmlToDraft from 'html-to-draftjs';
-import draftToHtml from 'draftjs-to-html';
+// import { Editor } from 'react-draft-wysiwyg';
+// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import htmlToDraft from 'html-to-draftjs';
+// import draftToHtml from 'draftjs-to-html';
 import {
     EditorContainerStyled,
     InputContainerStyled,
@@ -19,78 +19,79 @@ type Props = {
     onChange(event: string): void;
 }
 
-const toolbar = {
-    options: [
-        'link', 
-        'inline', 
-        'list', 
-        'history'
-    ],
-    inline: { inDropdown: true },
-    list: { inDropdown: true },
-    textAlign: { inDropdown: true },
-    link: { inDropdown: true },
-    history: { inDropdown: true },
-};
+// const toolbar = {
+//     options: [
+//         'link', 
+//         'inline', 
+//         'list', 
+//         'history'
+//     ],
+//     inline: { inDropdown: true },
+//     list: { inDropdown: true },
+//     textAlign: { inDropdown: true },
+//     link: { inDropdown: true },
+//     history: { inDropdown: true },
+// };
 
-const localization = {
-    locale: 'ru',
-};
+// const localization = {
+//     locale: 'ru',
+// };
 
 const TextEditor: React.FC<Props> = (props) => {
     const {
-        value = '',
-        defaultValue = '',
+        // value = '',
+        // defaultValue = '',
         tip,
-        placeholder="Название",
-        onChange,
+        // placeholder="Название",
+        // onChange,
     } = props;
 
-    const editor = React.useRef<Editor>(null);
+    // const editor = React.useRef<>(null);
 
-    function focusEditor() {
-        if (!editor?.current) {
-            return;
-        }
+    // function focusEditor() {
+    //     if (!editor?.current) {
+    //         return;
+    //     }
 
-        editor?.current?.focusEditor();
-    }
+    //     editor?.current?.focusEditor();
+    // }
 
-    const [editorState, setEditorState] = React.useState(() => {
-        if (!value && !defaultValue) {
-            return EditorState.createEmpty();
-        }
+    // const [editorState, setEditorState] = React.useState(() => {
+    //     if (!value && !defaultValue) {
+    //         return EditorState.createEmpty();
+    //     }
 
-        const contentBlock = htmlToDraft(value ?? defaultValue);
+    //     const contentBlock = htmlToDraft(value ?? defaultValue);
 
-        if (contentBlock) {
-            const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-            return EditorState.createWithContent(contentState);
-        }
-    });
+    //     if (contentBlock) {
+    //         const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+    //         return EditorState.createWithContent(contentState);
+    //     }
+    // });
 
-    const handleOnBlur = React.useCallback(() => {
-        if (!editorState) {
-            return;
-        };
+    // const handleOnBlur = React.useCallback(() => {
+    //     if (!editorState) {
+    //         return;
+    //     };
 
-        return onChange(draftToHtml(convertToRaw(editorState?.getCurrentContent())));
-    }, [onChange, editorState]);
+    //     return onChange(draftToHtml(convertToRaw(editorState?.getCurrentContent())));
+    // }, [onChange, editorState]);
 
-    const handleOnChange = React.useCallback((state: EditorState) => {
-        setEditorState(state);
+    // const handleOnChange = React.useCallback((state: EditorState) => {
+    //     setEditorState(state);
 
-        if (!state) {
-            return;
-        };
+    //     if (!state) {
+    //         return;
+    //     };
 
-        return onChange(draftToHtml(convertToRaw(state?.getCurrentContent())));
-    }, [onChange]);
+    //     return onChange(draftToHtml(convertToRaw(state?.getCurrentContent())));
+    // }, [onChange]);
 
     return (
-        <InputContainerStyled onClick={focusEditor}>
+        <InputContainerStyled>
             <EditorContainerStyled>
-                <Editor
+                test
+                {/* <Editor
                     ref={editor}
                     editorState={editorState}
                     onEditorStateChange={handleOnChange}
@@ -98,7 +99,7 @@ const TextEditor: React.FC<Props> = (props) => {
                     onBlur={handleOnBlur}
                     placeholder={placeholder}
                     toolbar={toolbar}
-                />
+                /> */}
             </EditorContainerStyled>
             {tip && (
                 <TipStyled>

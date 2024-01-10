@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react'
 import { useParams } from 'react-router-dom';
 import { searchPlacesByFloorAndPlace } from '../../../IndexedDB/places/searchPlaces';
 import { IParamsProps } from '../../app';

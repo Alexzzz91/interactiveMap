@@ -1,6 +1,6 @@
-import * as React from "react";
+import React, { SVGProps } from 'react'
 
-function SvgCat(props: React.SVGProps<SVGSVGElement>) {
+function SvgCat(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={48}
